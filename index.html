@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Anissa Zuhrita — Professional Portfolio. GIS, remote sensing, environmental analysis, climate data, and spatial decision support." />
+<title>Anissa Zuhrita | GIS & Remote Sensing Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-900: #123d2a; --green-800: #185236; --green-700: #20744d; --green-600: #2b8a5b;
+  --green-100: #eaf5ee; --green-050: #f5fbf7;
+  --ink: #17201b; --muted: #66736b; --line: #dce7df; --white: #fff;
+  --shadow: 0 16px 40px rgba(18,61,42,0.06); --radius: 20px; --max: 1000px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; line-height: 1.7; padding-top: 64px; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+::selection { background: var(--green-600); color: #fff; }
+
+/* LANG TOGGLE SYSTEM */
+.en { display: none !important; }
+body.lang-en .id { display: none !important; }
+body.lang-en .en { display: block !important; }
+body.lang-en span.en, body.lang-en a.en, body.lang-en strong.en { display: inline !important; }
+
+/* TOP NAV & SIDEBAR (DRAWER) */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; z-index: 90;
+}
+.menu-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--green-050); border: 1px solid var(--green-100);
+  color: var(--green-900); font-weight: 700; font-size: 14px;
+  padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  transition: 0.2s; font-family: inherit;
+}
+.menu-btn:hover { background: var(--green-100); }
+.top-nav .brand { font-weight: 800; font-size: 16px; color: var(--green-900); letter-spacing: -0.02em; }
+
+.sidebar-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: rgba(0,0,0,0.4); z-index: 99;
+  opacity: 0; visibility: hidden; transition: 0.3s ease;
+}
+.sidebar-overlay.open { opacity: 1; visibility: visible; }
+
+.sidebar {
+  position: fixed; top: 0; left: -300px; width: 280px; height: 100vh;
+  background: #fff; z-index: 100;
+  padding: 30px 24px; display: flex; flex-direction: column;
+  transition: 0.3s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+.sidebar.open { left: 0; }
+.sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.sidebar-logo { font-weight: 900; font-size: 18px; color: var(--green-900); letter-spacing: -0.02em; }
+.close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: var(--muted); padding: 0; line-height: 1; }
+
+.lang-toggle { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: #fafdfb; margin-bottom: 24px; }
+.lang-toggle button { border: 0; background: transparent; padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: 13px; color: var(--muted); cursor: pointer; flex: 1; font-family: inherit; }
+.lang-toggle button.active { background: var(--green-900); color: #fff; }
+
+.nav-links { display: flex; flex-direction: column; gap: 12px; font-size: 14px; font-weight: 600; color: #53615a; flex-grow: 1; }
+.nav-links a { padding: 10px 14px; border-radius: 8px; transition: 0.2s; border: 1px solid transparent; }
+.nav-links a:hover { background: var(--green-050); color: var(--green-800); border-color: var(--green-100); }
+
+/* HERO */
+.hero { padding: 90px 0 70px; background: linear-gradient(180deg, var(--green-050), #fff); text-align: center; border-bottom: 1px solid var(--line); }
+h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 900; line-height: 1; letter-spacing: -0.04em; color: var(--green-900); margin: 0 auto 16px; max-width: 900px; }
+.hero-role { font-size: clamp(16px, 2vw, 20px); font-weight: 700; color: var(--green-800); margin: 0; }
+
+/* BUTTONS */
+.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+.btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13.5px; border: 1px solid var(--line); transition: 0.2s; cursor: pointer; }
+.btn.primary { background: var(--green-900); color: #fff; border-color: var(--green-900); }
+.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(18,61,42,0.15); }
+.btn.secondary { background: #fff; color: var(--green-900); }
+.btn.secondary:hover { background: var(--green-050); border-color: var(--green-600); }
+
+/* SECTIONS */
+.section { padding: 80px 0; scroll-margin-top: 40px; }
+.section.alt { background: var(--green-050); }
+h2.stitle { font-size: clamp(24px, 3vw, 32px); font-weight: 900; letter-spacing: -0.02em; color: var(--green-900); margin: 0 0 32px; line-height: 1.2; border-bottom: 3px solid var(--green-100); padding-bottom: 12px;}
+
+/* PROJECT CARDS */
+.project-wrap { background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 40px; display: flex; flex-direction: column; }
+.project-visual { min-height: 140px; background: linear-gradient(135deg, #dff1e6, #f8fbf9); border-bottom: 1px solid var(--line); display: flex; justify-content: center; align-items: center; padding: 24px; }
+.project-visual img { width: 100%; max-height: 450px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background:#fff;}
+.project-body { padding: 40px; flex-grow: 1;}
+.project-body h3 { font-size: 22px; font-weight: 800; margin: 0 0 12px; color: var(--green-900); letter-spacing: -0.02em; line-height:1.3;}
+.project-body p { font-size: 15.5px; color: #4e5d55; margin: 0 0 20px; }
+.project-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.project-meta span { font-size: 13px; font-weight: 700; padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; color: #4e5d55; background: #fafdfb; }
+
+h4.section-lbl { font-size: 16px; color: var(--green-900); margin: 32px 0 12px; font-weight: 800; }
+h4.section-lbl:first-child {margin-top:0;}
+ul.custom-list { margin: 0 0 24px; padding-left: 20px; color: #4e5d55; font-size: 15.5px; }
+ul.custom-list li { margin-bottom: 8px; }
+
+/* LOGIC FLOW (HORIZONTAL ARROWS) */
+.logic-flow-horizontal { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #fafdfb; border: 1px solid var(--line); padding: 16px 20px; border-radius: 12px; margin-bottom: 24px; }
+.logic-flow-horizontal span { background: #fff; border: 1px solid var(--green-100); padding: 6px 12px; border-radius: 6px; font-size: 13.5px; font-weight: 600; color: var(--green-900); }
+.logic-flow-horizontal b { color: var(--green-600); font-size: 16px; margin: 0 2px;}
+
+/* TABLES */
+table.data-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 15px; }
+table.data-table th { text-align: left; padding: 12px; border-bottom: 2px solid var(--green-600); color: var(--green-900); font-weight: 700; background:#fafdfb;}
+table.data-table td { padding: 12px; border-bottom: 1px solid var(--line); color: #4e5d55; }
+
+/* PANELS */
+.panel { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 32px; box-shadow: 0 12px 28px rgba(18,61,42,0.02); margin-bottom: 24px; }
+.panel h3 { margin: 0 0 16px; font-size: 20px; font-weight: 800; color: var(--green-900); }
+.panel p { margin: 0 0 16px; color: #4e5d55; font-size: 15.5px; }
+.skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.chip { padding: 8px 12px; border-radius: 6px; background: var(--green-100); color: var(--green-900); font-size: 13px; font-weight: 600; }
+
+/* EDU & CERTIFICATION */
+.edu-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 30px; margin-bottom: 40px;}
+.edu-list { display: flex; flex-direction: column; gap: 16px; }
+.edu { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+.edu .date { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green-700); margin-bottom: 8px; display: block; }
+.edu h3 { margin: 0 0 6px; font-size: 17px; font-weight: 800; color: var(--green-900); }
+.edu p { margin: 0; color: #4e5d55; font-size: 15px; }
+.cert-list { display: flex; flex-direction: column; gap: 16px; }
+.cert { padding: 24px; border-radius: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+.cert strong { display: block; font-size: 15px; font-weight: 800; color: var(--green-900); margin-bottom: 6px; }
+.cert span { color: #4e5d55; font-size: 14.5px; line-height: 1.6; display: block; }
+
+@media(max-width: 900px) { 
+  .edu-grid { grid-template-columns: 1fr; } 
+  .project-body, .panel { padding: 24px; } 
+  h1 { font-size: 38px; } 
+  .logic-flow-horizontal span {font-size: 12px;}
+}
+
+/* FOOTER */
+footer { background: var(--green-900); color: #a9ddbe; padding: 40px 0; text-align: center; font-size: 14.5px; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION BAR -->
+<header class="top-nav">
+  <button class="menu-btn" onclick="toggleSidebar()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    Menu
+  </button>
+  <div class="brand">Anissa Zuhrita.</div>
+</header>
+
+<!-- SIDEBAR DRAWER -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">Menu</div>
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  </div>
+  
+  <div class="lang-toggle">
+    <button id="idBtn" class="active">ID</button>
+    <button id="enBtn">EN</button>
+  </div>
+
+  <div class="nav-links">
+    <a href="#01" class="id" onclick="toggleSidebar()">01. Pendidikan & Sertifikasi</a><a href="#01" class="en" onclick="toggleSidebar()">01. Education & Certification</a>
+    <a href="#02" class="id" onclick="toggleSidebar()">02. Konsultan Lingkungan</a><a href="#02" class="en" onclick="toggleSidebar()">02. Environmental Consulting</a>
+    <a href="#03" class="id" onclick="toggleSidebar()">03. Survei Biomassa Mangrove</a><a href="#03" class="en" onclick="toggleSidebar()">03. Mangrove Biomass Survey</a>
+    <a href="#04" class="id" onclick="toggleSidebar()">04. Penelitian Iklim Regional</a><a href="#04" class="en" onclick="toggleSidebar()">04. Regional Climate Research</a>
+    <a href="#05" class="id" onclick="toggleSidebar()">05. Pemodelan Hidrologi DAS</a><a href="#05" class="en" onclick="toggleSidebar()">05. Watershed Hydrology</a>
+    <a href="#06" class="id" onclick="toggleSidebar()">06. Remote Sensing Analytics</a><a href="#06" class="en" onclick="toggleSidebar()">06. Remote Sensing Analytics</a>
+    <a href="#07" class="id" onclick="toggleSidebar()">07. Spatial Decision WebGIS</a><a href="#07" class="en" onclick="toggleSidebar()">07. Spatial Decision WebGIS</a>
+    <a href="#08" class="id" onclick="toggleSidebar()">08. Technical Dev Plugins</a><a href="#08" class="en" onclick="toggleSidebar()">08. Technical Dev Plugins</a>
+    <a href="#09" class="id" onclick="toggleSidebar()">09. Speaker on GE-ONIT</a><a href="#09" class="en" onclick="toggleSidebar()">09. Speaker on GE-ONIT</a>
+  </div>
+</div>
+
+<main id="top">
+  <!-- 00 HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Anissa Zuhrita</h1>
+      <p class="hero-role">GIS & Remote Sensing Specialist | Hydrologist</p>
+      <div class="cta-row">
+        <a class="btn primary id" href="CV_Anissa_Zuhrita.pdf" download>Unduh CV (PDF)</a>
+        <a class="btn primary en" href="CV_Anissa_Zuhrita.pdf" download>Download CV (PDF)</a>
+        <a class="btn secondary" href="https://github.com/zuhritaanissa" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn secondary" href="https://linkedin.com/in/anissazuhrita/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 EDUCATION, CERTIFICATION & PROFILE -->
+  <section id="01" class="section">
+    <div class="container">
+      <h2 class="stitle id">01. Pendidikan dan Sertifikasi</h2>
+      <h2 class="stitle en">01. Education and Certification</h2>
+      
+      <div class="panel">
+        <h3 class="id">Profil Profesional</h3>
+        <h3 class="en">Professional Profile</h3>
+        <p class="id">Spesialis GIS dan Penginderaan Jauh dengan pengalaman profesional mendukung 40+ proyek lingkungan dan pembangunan melalui analisis spasial, kajian lingkungan, integrasi data, survei lapangan, dan penyusunan dokumen teknis. Berpengalaman mendukung penyusunan AMDAL, UKL-UPL, DELH, kajian rona lingkungan awal, serta analisis spasial untuk proyek infrastruktur, perkebunan, perumahan, dan minyak dan gas.</p>
+        <p class="id">Meraih gelar Magister Penginderaan Jauh dari Universitas Gadjah Mada, dengan pengalaman riset dan analisis yang mencakup karbon dan biomassa, variabilitas iklim, pemodelan hidrologi, serta pemantauan lingkungan berbasis penginderaan jauh. Terbiasa mengintegrasikan citra satelit, data lapangan, dataset lingkungan, dan data iklim menjadi analisis spasial dan kuantitatif menggunakan Google Earth Engine, QGIS, ArcGIS, dan Python.</p>
+        <p class="id">Memiliki pengalaman dalam komunikasi teknis dan capacity building, termasuk sebagai pembicara undangan pada pelatihan online serta presenter dalam forum akademik bidang lingkungan dan penginderaan jauh.</p>
+        
+        <p class="en">Environmental GIS and Remote Sensing Specialist with professional experience supporting 40+ environmental and development projects through GIS analysis, environmental assessment, spatial data integration, field surveys, and technical documentation. Experienced in AMDAL, UKL-UPL, DELH, environmental baseline assessment, and spatial analysis across infrastructure, plantation, housing, and oil & gas projects.</p>
+        <p class="en">Holds an MSc in Remote Sensing from Universitas Gadjah Mada, with research experience spanning carbon and biomass assessment, climate variability, hydrological modelling, and satellite-based environmental monitoring. Experienced in integrating satellite imagery, field observations, environmental datasets, and climate records into quantitative and spatial analyses using Google Earth Engine, QGIS, ArcGIS, and Python.</p>
+        <p class="en">Brings additional experience in technical communication and capacity building, including invited speaking at international online training and presenting environmental and remote sensing research in academic forums.</p>
+        
+        <div class="skills">
+          <span class="chip">GIS & Spatial Analysis</span>
+          <span class="chip">Remote Sensing</span>
+          <span class="chip">Google Earth Engine</span>
+          <span class="chip">Python</span>
+          <span class="chip">Environmental Modelling</span>
+          <span class="chip">Climate Data Analysis</span>
+          <span class="chip">Field Data</span>
+        </div>
+      </div>
+
+      <div class="edu-grid">
+        <!-- Kolom Pendidikan -->
+        <div class="edu-list">
+          <div class="edu">
+            <span class="date id">Februari 2024 — Februari 2026</span><span class="date en">February 2024 — February 2026</span>
+            <h3>Universitas Gadjah Mada</h3>
+            <p class="id">Magister (M.Sc) Penginderaan Jauh</p>
+            <p class="en">Master of Science (M.Sc) in Remote Sensing</p>
+          </div>
+          <div class="edu">
+            <span class="date id">Juli 2017 — Oktober 2021</span><span class="date en">July 2017 — October 2021</span>
+            <h3>Universitas Negeri Padang</h3>
+            <p class="id">Sarjana Sains Geografi</p>
+            <p class="en">Bachelor of Science in Geography</p>
+          </div>
+          <div class="edu">
+            <span class="date">2014 — 2017</span>
+            <h3>SMA Negeri 1 Kota Jambi</h3>
+            <p class="id">Matematika dan Ilmu Alam</p>
+            <p class="en">Mathematics and Natural Sciences</p>
+          </div>
+        </div>
+        
+        <!-- Kolom Sertifikasi -->
+        <div class="cert-list">
+          <div class="cert">
+            <strong class="id">Sertifikasi Profesi GIS</strong><strong class="en">Certified GIS Professional</strong>
+            <span class="id">BNSP — Level 7. Certified GIS Information System Specialist (2026–2029).</span>
+            <span class="en">BNSP — Level 7. Certified GIS Information System Specialist (2026–2029).</span>
+          </div>
+          <div class="cert">
+            <strong class="id">Sertifikasi Profesi GIS</strong><strong class="en">Certified GIS Professional</strong>
+            <span class="id">BNSP — Level 6. Certified GIS Information System Analyst (2022–2025).</span>
+            <span class="en">BNSP — Level 6. Certified GIS Information System Analyst (2022–2025).</span>
+          </div>
+          <div class="cert">
+            <strong class="id">Diseminasi Pengetahuan & Presentasi Profesional</strong><strong class="en">Knowledge Sharing & Professional Presentation</strong>
+            <ul class="custom-list id" style="margin:0; padding-left:16px;">
+              <li>Pemakalah — The 7th International Conference of Geography and Disaster Management (ICGDM 2025).</li>
+              <li>Pemakalah — National Geography Seminar VI (2025).</li>
+              <li>Pembicara Undangan — GE-ONIT / EAGE Online Training (2026).</li>
+            </ul>
+            <ul class="custom-list en" style="margin:0; padding-left:16px;">
+              <li>Presenter — The 7th International Conference of Geography and Disaster Management (ICGDM 2025).</li>
+              <li>Presenter — National Geography Seminar VI (2025).</li>
+              <li>Invited Speaker — GE-ONIT / EAGE Online Training (2026).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ENVIRONMENTAL CONSULTING -->
+  <section id="02" class="section alt">
+    <div class="container">
+      <h2 class="stitle id">02. GIS Analyst at Environmental Consulting</h2>
+      <h2 class="stitle en">02. GIS Analyst at Environmental Consulting</h2>
+      
+      <div class="project-wrap">
+        <div class="project-body">
+          <h3>PT Anugrah Agung Nusantara</h3>
+          <div class="project-meta">
+            <span class="id">GIS Analyst – Konsultan Lingkungan</span><span class="en">GIS Analyst – Environmental Consultant</span><span>Jambi | Nov 2021 – Jan 2024</span>
+          </div>
+          <p class="id">Selama bekerja di konsultan lingkungan, saya mendukung 40+ proyek lingkungan dan pembangunan dari berbagai sektor, termasuk infrastruktur, perkebunan, perumahan, serta minyak dan gas. Peran saya mencakup pengolahan dan integrasi data spasial, analisis lingkungan, penyusunan peta teknis, survei lapangan, serta dukungan GIS untuk dokumen AMDAL, UKL-UPL, DELH, dan kajian teknis lingkungan.</p>
+          <p class="en">While working at the environmental consultancy, I supported 40+ environmental and development projects across various sectors, including infrastructure, plantations, housing, and oil and gas. My roles included spatial data processing and integration, environmental analysis, technical mapping, field surveys, and GIS support for AMDAL, UKL-UPL, DELH, and technical environmental studies.</p>
+          
+          <hr style="border:0; border-top:1px solid var(--line); margin: 40px 0;">
+          
+          <h4 class="section-lbl id">Studi Kasus Proyek</h4><h4 class="section-lbl en">Project Case Study</h4>
+          <h3 class="id">AMDAL Pembangunan dan Operasional Jalan Khusus Angkutan Batubara</h3>
+          <h3 class="en">AMDAL Construction and Operation of Special Coal-Haulage Road</h3>
+          <div class="project-meta">
+            <span class="id">Kabupaten Muaro Jambi & Kabupaten Batang Hari, Provinsi Jambi | 2023</span><span class="en">Muaro Jambi & Batang Hari Regencies, Jambi Province | 2023</span><span>±77,5 km</span>
+          </div>
+          
+          <div class="project-visual" style="border:1px solid var(--line); border-radius:12px; margin-bottom:24px;">
+            <img src="amdal-trase.jpg" alt="Peta AMDAL Jalan Khusus Angkutan Batubara">
+          </div>
+
+          <h4 class="section-lbl id">Konteks Proyek</h4><h4 class="section-lbl en">Project Context</h4>
+          <p class="id">Penyusunan AMDAL untuk rencana pembangunan dan operasional jalan khusus angkutan batubara sepanjang ±77,5 km yang melintasi Kabupaten Muaro Jambi dan Kabupaten Batang Hari. Rencana jalan menghubungkan wilayah Taman Rajo – Kumpeh Ulu – Sungai Gelam – Mestong – Bajubang.</p>
+          <p class="id">Proyek ini dilatarbelakangi oleh kebutuhan untuk menata sistem pengangkutan batubara di Provinsi Jambi, terutama untuk mengurangi persoalan yang timbul dari penggunaan jalan umum, seperti kemacetan, kerusakan jalan, dan risiko kecelakaan lalu lintas. Karena itu, proyek ini tidak hanya merupakan pembangunan infrastruktur transportasi, tetapi juga berkaitan dengan penataan aktivitas angkutan batubara dan pengelolaan dampak lingkungan di tingkat daerah.</p>
+          <p class="en">Preparation of the AMDAL for the planned construction and operation of a special coal-haulage road spanning ±77.5 km crossing Muaro Jambi and Batang Hari Regencies. The planned road connects Taman Rajo – Kumpeh Ulu – Sungai Gelam – Mestong – Bajubang.</p>
+          <p class="en">This project was driven by the need to regulate the coal transport system in Jambi Province, particularly to reduce problems arising from the use of public roads, such as traffic jams, road damage, and the risk of traffic accidents. Therefore, this project is not only about transport infrastructure development but also relates to regulating coal transport activities and managing environmental impacts at the regional level.</p>
+          
+          <h4 class="section-lbl id">Konteks Kebijakan & Kerangka Regulasi</h4><h4 class="section-lbl en">Policy Context & Regulatory Framework</h4>
+          <p class="id">Rencana pembangunan jalan khusus ini tidak berdiri sendiri. Kegiatan tersebut berada dalam kerangka kebijakan daerah mengenai pengangkutan batubara, penyelenggaraan jalan khusus, serta ketentuan perlindungan dan pengelolaan lingkungan hidup.</p>
+          <p class="en">This special road construction plan does not stand alone. The activity falls within the framework of regional policies regarding coal transport, the organization of special roads, and provisions for environmental protection and management.</p>
+          <ul class="custom-list id">
+            <li><strong>Peraturan Daerah Provinsi Jambi No. 13 Tahun 2012:</strong> tentang Pengaturan Pengangkutan Batubara dalam Provinsi Jambi. Menjadi salah satu dasar pengaturan aktivitas pengangkutan batubara di Provinsi Jambi dan konteks munculnya kebutuhan penataan jalur angkutan batubara.</li>
+            <li><strong>Peraturan Daerah Provinsi Jambi No. 1 Tahun 2015:</strong> tentang Penyelenggaraan Jalan Khusus. Mengatur penyelenggaraan jalan khusus, termasuk pembangunan jalan khusus yang melintasi lebih dari satu kabupaten/kota dan persyaratan perizinannya.</li>
+            <li><strong>Peraturan Menteri LHK No. 4 Tahun 2021:</strong> Menjadi acuan dalam menentukan jenis dan skala kegiatan yang wajib memiliki AMDAL, UKL-UPL, atau SPPL, termasuk pembangunan jalan dengan kriteria tertentu.</li>
+            <li><strong>Peraturan Pemerintah No. 22 Tahun 2021:</strong> tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup. Menjadi kerangka utama penyelenggaraan perlindungan dan pengelolaan lingkungan hidup, termasuk AMDAL dan persetujuan lingkungan.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Jambi Province Regional Regulation No. 13 of 2012:</strong> concerning Coal Transport Regulation in Jambi Province. Serves as one of the bases for regulating coal transport activities and the context for the need to organize transport routes.</li>
+            <li><strong>Jambi Province Regional Regulation No. 1 of 2015:</strong> concerning the Organization of Special Roads. Regulates special roads, including those crossing more than one regency/city and their permitting requirements.</li>
+            <li><strong>MoEF Regulation No. 4 of 2021:</strong> Serves as a reference in determining the type and scale of activities requiring AMDAL, UKL-UPL, or SPPL, including road construction with specific criteria.</li>
+            <li><strong>Government Regulation No. 22 of 2021:</strong> concerning the Implementation of Environmental Protection and Management. The main framework for environmental protection and management, including AMDAL and environmental approvals.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Dari Kebijakan Menjadi Kajian Lingkungan</h4><h4 class="section-lbl en">From Policy to Environmental Study</h4>
+          <p class="id">Rangkaian kebijakan tersebut kemudian diterjemahkan ke dalam kebutuhan untuk melakukan kajian lingkungan terhadap rencana kegiatan. Dalam proses AMDAL, hubungan tersebut dapat digambarkan secara sederhana:</p>
+          <p class="en">This series of policies was then translated into the need to conduct an environmental study of the planned activities. In the AMDAL process, this relationship can be simply illustrated as:</p>
+          
+          <div class="logic-flow-horizontal id">
+            <span>Kebijakan & rencana pembangunan</span><b>→</b><span>Rencana kegiatan</span><b>→</b><span>Kondisi lingkungan eksisting</span><b>→</b><span>Potensi dampak</span><b>→</b><span>Pengelolaan & pemantauan</span><b>→</b><span>Pertimbangan kelayakan lingkungan</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Policy & development plan</span><b>→</b><span>Planned activities</span><b>→</b><span>Existing environmental conditions</span><b>→</b><span>Potential impacts</span><b>→</b><span>Management & monitoring</span><b>→</b><span>Environmental feasibility consideration</span>
+          </div>
+
+          <p class="id">Di dalam proses tersebut, GIS menjadi salah satu alat untuk menghubungkan rencana kegiatan dengan kondisi ruang dan lingkungan di wilayah studi.</p>
+          <p class="en">In this process, GIS becomes a tool to connect planned activities with spatial and environmental conditions in the study area.</p>
+
+          <h4 class="section-lbl id">Peran Saya sebagai Tenaga Ahli GIS/Pemetaan</h4><h4 class="section-lbl en">My Role as GIS/Mapping Expert</h4>
+          <p class="id">Sebagai bagian dari tim penyusun AMDAL, saya bertanggung jawab menyiapkan informasi dan analisis spasial yang digunakan untuk mendukung kajian.</p>
+          <p class="en">As part of the AMDAL preparation team, I was responsible for providing spatial information and analysis used to support the study.</p>
+          <ul class="custom-list id">
+            <li><strong>01 — Menentukan Wilayah Studi:</strong> Menyusun peta administrasi lintas Kabupaten Muaro Jambi dan Kabupaten Batang Hari serta melakukan overlay dengan trase kegiatan untuk membantu menetapkan delineasi wilayah studi dan cakupan analisis.</li>
+            <li><strong>02 — Memetakan Kondisi Lingkungan:</strong> Mengintegrasikan berbagai data spasial yang relevan dengan karakteristik wilayah, meliputi: KHG · Kedalaman Gambut · PIPPIB · Tutupan Lahan · Topografi · Hidrologi · Tata Ruang · Infrastruktur · Titik Sampling. Data tersebut digunakan untuk membangun gambaran mengenai kondisi lingkungan di sepanjang koridor kegiatan.</li>
+            <li><strong>03 — Melakukan Spatial Overlay:</strong> Melakukan overlay berbagai parameter lingkungan dengan trase jalan sepanjang ±77,5 km untuk melihat hubungan antara rencana kegiatan dengan karakteristik ruang dan lingkungan di sepanjang koridor. Pendekatan ini membantu mengidentifikasi bagian wilayah yang memiliki karakteristik dan sensitivitas lingkungan berbeda.</li>
+            <li><strong>04 — Mendukung Rona Lingkungan:</strong> Memetakan lokasi pengambilan sampel dan menghubungkannya dengan informasi spasial lainnya untuk mendukung penyusunan rona lingkungan awal sebagai dasar analisis dampak.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>01 — Determining the Study Area:</strong> Preparing cross-regency administrative maps for Muaro Jambi and Batang Hari and overlaying the activity alignment to help determine the study area delineation and analysis scope.</li>
+            <li><strong>02 — Mapping Environmental Conditions:</strong> Integrating spatial data relevant to regional characteristics, including: KHG (Peatland Hydrological Unit) · Peat Depth · PIPPIB · Land Cover · Topography · Hydrology · Spatial Planning · Infrastructure · Sampling Points. This data builds a picture of environmental conditions along the activity corridor.</li>
+            <li><strong>03 — Performing Spatial Overlay:</strong> Overlaying environmental parameters with the ±77.5 km road alignment to see the relationship between planned activities and spatial/environmental characteristics along the corridor. This identifies areas with different environmental sensitivities.</li>
+            <li><strong>04 — Supporting Environmental Baseline:</strong> Mapping sampling locations and connecting them with other spatial information to support the preparation of the initial environmental baseline as a basis for impact analysis.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Nilai Pengalaman Ini bagi Pekerjaan Selanjutnya</h4><h4 class="section-lbl en">Value of This Experience for Future Work</h4>
+          <p class="id">Pengalaman ini memberikan saya pemahaman bahwa analisis lingkungan tidak cukup hanya melihat apa kegiatannya, tetapi juga perlu memahami: Di mana kegiatan berlangsung? Apa yang berada di sekitarnya? Apa yang sensitif? Bagaimana aktivitas tersebut berinteraksi dengan kondisi lingkungan?</p>
+          <p class="id">Kemampuan untuk menghubungkan konteks kebijakan, aktivitas pembangunan, data lingkungan, dan analisis spasial menjadi fondasi yang dapat saya terapkan pada pekerjaan yang lebih luas, termasuk environmental planning, climate action, dan penyusunan strategi berbasis data.</p>
+          <p class="en">This experience gave me the understanding that environmental analysis is not enough just by looking at what the activity is, but also needs to understand: Where does the activity take place? What is around it? What is sensitive? How does the activity interact with environmental conditions?</p>
+          <p class="en">The ability to connect policy contexts, development activities, environmental data, and spatial analysis serves as a foundation that I can apply to broader work, including environmental planning, climate action, and data-driven strategy development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 MANGROVE -->
+  <section id="03" class="section">
+    <div class="container">
+      <h2 class="stitle id">03. Survei Biomassa Mangrove</h2>
+      <h2 class="stitle en">03. Mangrove Biomass Survey</h2>
+      
+      <div class="project-wrap">
+        <div class="project-visual"><img src="mangrove-survey.jpg" alt="Survei Biomassa Mangrove"></div>
+        <div class="project-body">
+          <h3 class="id">Estimasi Aboveground Biomass (AGB) untuk Mendukung Analisis Karbon Ekosistem</h3>
+          <h3 class="en">Aboveground Biomass (AGB) Estimation to Support Ecosystem Carbon Analysis</h3>
+          <div class="project-meta"><span>Teluk Pangpang, Banyuwangi</span><span>Program Magister UGM</span><span>Sentinel-1 & 2</span></div>
+          
+          <h4 class="section-lbl id">Tentang Proyek</h4><h4 class="section-lbl en">About the Project</h4>
+          <p class="id">Kegiatan ini merupakan bagian dari kegiatan penelitian lapangan mengenai estimasi dan pemetaan Aboveground Biomass (AGB) ekosistem mangrove menggunakan data penginderaan jauh. Mangrove merupakan salah satu ekosistem penting dalam mitigasi perubahan iklim karena memiliki kemampuan menyimpan karbon dalam biomassa dan ekosistemnya. Oleh karena itu, informasi mengenai biomassa menjadi dasar penting untuk memahami potensi penyimpanan karbon dan kondisi ekosistem mangrove.</p>
+          <p class="en">This activity is part of field research regarding the estimation and mapping of Aboveground Biomass (AGB) in mangrove ecosystems using remote sensing data. Mangroves are key ecosystems in climate change mitigation due to their ability to store carbon in their biomass and ecosystems. Therefore, biomass information is a crucial basis for understanding carbon storage potential and mangrove ecosystem conditions.</p>
+
+          <h4 class="section-lbl id">Tujuan</h4><h4 class="section-lbl en">Objectives</h4>
+          <ul class="custom-list id">
+            <li>Mengestimasi dan memetakan Aboveground Biomass (AGB) menggunakan citra Sentinel-2.</li>
+            <li>Menganalisis hubungan AGB dengan parameter biofisik mangrove, termasuk kerapatan kanopi, Leaf Area Index (LAI), dan tinggi kanopi menggunakan data Sentinel-1 dan Sentinel-2.</li>
+            <li>Mengidentifikasi parameter biofisik yang paling berhubungan dengan AGB sebagai informasi pendukung pengelolaan dan konservasi mangrove.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li>Estimate and map Aboveground Biomass (AGB) using Sentinel-2 imagery.</li>
+            <li>Analyze the relationship between AGB and mangrove biophysical parameters, including canopy density, Leaf Area Index (LAI), and canopy height using Sentinel-1 and Sentinel-2 data.</li>
+            <li>Identify the biophysical parameters most related to AGB as supporting information for mangrove management and conservation.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Kontribusi Lapangan Saya</h4><h4 class="section-lbl en">My Field Contribution</h4>
+          <p class="id">Saya terlibat langsung dalam survei biomassa mangrove berbasis non-destructive sampling untuk memperoleh data biofisik yang digunakan sebagai informasi referensi dalam analisis penginderaan jauh. Kegiatan lapangan meliputi:</p>
+          <p class="en">I was directly involved in the mangrove biomass survey based on non-destructive sampling to obtain biophysical data used as reference information in remote sensing analysis. Field activities included:</p>
+          <ul class="custom-list id">
+            <li><strong>Pengukuran biomassa:</strong> Melakukan pengukuran parameter pohon, terutama diameter batang (DBH) dan tinggi kanopi, sebagai bagian dari estimasi biomassa atas permukaan.</li>
+            <li><strong>Spatial data collection:</strong> Menentukan koordinat setiap plot pengukuran menggunakan GNSS handheld receiver untuk menghubungkan data lapangan dengan informasi citra satelit.</li>
+            <li><strong>Vegetation assessment:</strong> Mengidentifikasi spesies mangrove dan mencatat karakteristik vegetasi pada plot pengamatan.</li>
+            <li><strong>Field validation:</strong> Mengumpulkan data biofisik lapangan yang dapat digunakan untuk mendukung analisis dan validasi estimasi biomassa berbasis citra satelit.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Biomass measurement:</strong> Measuring tree parameters, specifically stem diameter (DBH) and canopy height, as part of aboveground biomass estimation.</li>
+            <li><strong>Spatial data collection:</strong> Determining the coordinates of each measurement plot using a GNSS handheld receiver to connect field data with satellite imagery information.</li>
+            <li><strong>Vegetation assessment:</strong> Identifying mangrove species and recording vegetation characteristics in observation plots.</li>
+            <li><strong>Field validation:</strong> Collecting field biophysical data usable to support analysis and validation of satellite-based biomass estimation.</li>
+          </ul>
+
+          <div class="logic-flow-horizontal id">
+            <span>Kondisi Vegetasi</span><b>→</b><span>Biomassa</span><b>→</b><span>Carbon Storage</span><b>→</b><span>Informasi Spasial</span><b>→</b><span>Monitoring & Conservation</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Vegetation Condition</span><b>→</b><span>Biomass</span><b>→</b><span>Carbon Storage</span><b>→</b><span>Spatial Information</span><b>→</b><span>Monitoring & Conservation</span>
+          </div>
+          <p class="id">Berbeda dari sekadar melakukan analisis citra satelit, kegiatan ini memberi saya pengalaman memahami bagaimana data lapangan diperoleh dan digunakan sebagai dasar dalam estimasi biomassa berbasis penginderaan jauh. Pengalaman tersebut menjadi salah satu fondasi pemahaman saya terhadap pendekatan spatial monitoring of biomass and carbon-related environmental indicators.</p>
+          <p class="en">Different from merely conducting satellite imagery analysis, this activity gave me experience in understanding how field data is obtained and used as a basis in remote sensing-based biomass estimation. This experience became one of the foundations for my understanding of spatial monitoring of biomass and carbon-related environmental indicators.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 CLIMATE -->
+  <section id="04" class="section alt">
+    <div class="container">
+      <h2 class="stitle id">04. Penelitian Dinamika Iklim Regional</h2>
+      <h2 class="stitle en">04. Regional Climate Dynamics Research</h2>
+      
+      <div class="project-wrap">
+        <div class="project-body">
+          <h3 class="id">Menganalisis Pengaruh ENSO terhadap Variabilitas Curah Hujan di Sulawesi Tengah</h3>
+          <h3 class="en">Analyzing the Influence of ENSO on Rainfall Variability in Central Sulawesi</h3>
+          <div class="project-meta"><span>Sulawesi Tengah | 1991–2024</span><span>Peran: Co-Author / Climate Data Analyst</span></div>
+          
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary id" href="https://share.google/xycg3zT1vnmpbOgJL" target="_blank" rel="noopener">Buka Jurnal Publikasi (Buletin GAW Bariri 2025) ↗</a>
+            <a class="btn secondary en" href="https://share.google/xycg3zT1vnmpbOgJL" target="_blank" rel="noopener">Open Publication Journal (Buletin GAW Bariri 2025) ↗</a>
+          </div>
+
+          <h4 class="section-lbl id">Tentang Studi</h4><h4 class="section-lbl en">About the Study</h4>
+          <p class="id">Penelitian ini menganalisis hubungan antara El Niño–Southern Oscillation (ENSO) dan variabilitas curah hujan di Sulawesi Tengah menggunakan data jangka panjang selama 1991–2024. ENSO merupakan salah satu faktor iklim global yang dapat memengaruhi pola curah hujan di Indonesia. Perubahan tersebut dapat berimplikasi pada risiko kekeringan, banjir, dan bencana hidrometeorologi, sehingga pemahaman mengenai hubungan ENSO dan curah hujan penting dalam mendukung perencanaan adaptasi terhadap variabilitas dan perubahan iklim.</p>
+          <p class="en">This research analyzes the relationship between El Niño–Southern Oscillation (ENSO) and rainfall variability in Central Sulawesi using long-term data over 1991–2024. ENSO is a global climate factor affecting rainfall patterns in Indonesia. These changes can imply risks of drought, floods, and hydrometeorological disasters, thus understanding the relationship between ENSO and rainfall is important in supporting adaptation planning for climate variability and change.</p>
+
+          <h4 class="section-lbl id">Pertanyaan yang Dikaji</h4><h4 class="section-lbl en">Research Question</h4>
+          <p class="id">Seberapa besar ENSO memengaruhi variabilitas curah hujan di Sulawesi Tengah, dan apakah pengaruh tersebut sama di setiap wilayah? Untuk menjawabnya, analisis dilakukan pada empat stasiun meteorologi: Luwuk · Poso · Toli-Toli · Palu.</p>
+          <p class="en">How much does ENSO influence rainfall variability in Central Sulawesi, and is the influence the same in every region? To answer this, analysis was conducted at four meteorological stations: Luwuk · Poso · Toli-Toli · Palu.</p>
+
+          <h4 class="section-lbl id">Data & Pendekatan Analisis</h4><h4 class="section-lbl en">Data & Analytical Approach</h4>
+          <ul class="custom-list id">
+            <li><strong>Curah Hujan:</strong> Data observasi stasiun meteorologi BMKG.</li>
+            <li><strong>ENSO:</strong> Oceanic Niño Index (ONI) dari Climate Prediction Center (CPC).</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Rainfall:</strong> Observational data from BMKG meteorological stations.</li>
+            <li><strong>ENSO:</strong> Oceanic Niño Index (ONI) from the Climate Prediction Center (CPC).</li>
+          </ul>
+          <p class="id">Data ONI dan curah hujan dianalisis pada skala tiga bulanan untuk mengevaluasi hubungan keduanya menggunakan: Pearson Correlation, Coefficient of Determination (R²), dan Statistical Significance Test (t-test). Analisis kemudian diperluas berdasarkan intensitas El Niño dan La Niña, sehingga tidak hanya melihat apakah ENSO berpengaruh, tetapi juga bagaimana respons curah hujan berubah berdasarkan kekuatan kejadian.</p>
+          <p class="en">ONI and rainfall data were analyzed on a three-monthly scale to evaluate their relationship using: Pearson Correlation, Coefficient of Determination (R²), and Statistical Significance Test (t-test). The analysis was then expanded based on El Niño and La Niña intensities, thereby not only seeing if ENSO has an effect, but also how the rainfall response changes based on event strength.</p>
+
+          <h4 class="section-lbl id">Temuan Utama</h4><h4 class="section-lbl en">Key Findings</h4>
+          <p class="id">Hasil penelitian menunjukkan bahwa pengaruh ENSO terhadap curah hujan berbeda secara spasial di Sulawesi Tengah. Secara umum, El Niño cenderung menurunkan curah hujan, sedangkan La Niña cenderung meningkatkan curah hujan. Namun, kekuatan pengaruhnya berbeda antarwilayah.</p>
+          <p class="en">Research results indicate that the influence of ENSO on rainfall differs spatially in Central Sulawesi. Generally, El Niño tends to decrease rainfall, while La Niña tends to increase it. However, the strength of the influence differs between regions.</p>
+          
+          <table class="data-table">
+            <tr>
+              <th class="id">Stasiun</th><th class="en">Station</th>
+              <th>Korelasi ONI–Curah Hujan</th><th>R²</th>
+            </tr>
+            <tr><td>Luwuk</td><td>-0,29</td><td>0,09</td></tr>
+            <tr><td>Poso</td><td>-0,14</td><td>0,02</td></tr>
+            <tr><td>Toli-Toli</td><td>-0,49</td><td>0,24</td></tr>
+            <tr><td>Palu</td><td>-0,43</td><td>0,19</td></tr>
+          </table>
+
+          <p class="id">Hubungan paling kuat ditemukan di Toli-Toli dan Palu, sedangkan di Luwuk dan Poso pengaruh ENSO relatif lebih lemah. Analisis berdasarkan kelas intensitas menunjukkan bahwa dampak ENSO berubah tergantung kekuatan kejadian. Salah satu temuan paling jelas terlihat di Palu saat El Niño Kuat, dengan korelasi -0,45 dan R² sekitar 0,20. Artinya, tidak semua wilayah dapat diperlakukan dengan pendekatan iklim yang sama.</p>
+          <p class="en">The strongest relationships were found in Toli-Toli and Palu, while in Luwuk and Poso the ENSO influence was relatively weaker. Analysis based on intensity classes showed that ENSO impacts change depending on event strength. One of the clearest findings was seen in Palu during Strong El Niño, with a correlation of -0.45 and R² around 0.20. Meaning, not all regions can be treated with the same climate approach.</p>
+
+          <h4 class="section-lbl id">Apa yang Saya Kerjakan</h4><h4 class="section-lbl en">What I Did</h4>
+          <ul class="custom-list id">
+            <li>Mengolah data curah hujan jangka panjang dan menggunakan indikator ONI.</li>
+            <li>Menghitung anomali curah hujan, korelasi Pearson, dan koefisien determinasi.</li>
+            <li>Melakukan uji signifikansi statistik (t-test) dan mengklasifikasikan intensitas ENSO.</li>
+            <li>Membandingkan respons curah hujan antarwilayah secara spasial.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li>Processed long-term rainfall data and utilized ONI indicators.</li>
+            <li>Calculated rainfall anomalies, Pearson correlation, and coefficient of determination.</li>
+            <li>Conducted statistical significance tests (t-test) and classified ENSO intensity.</li>
+            <li>Compared rainfall responses spatially across regions.</li>
+          </ul>
+
+          <div class="logic-flow-horizontal id">
+            <span>Climate Driver</span><b>→</b><span>Regional Response</span><b>→</b><span>Spatial Variability</span><b>→</b><span>Risk & Impact</span><b>→</b><span>Adaptation / Mitigation Planning</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Climate Driver</span><b>→</b><span>Regional Response</span><b>→</b><span>Spatial Variability</span><b>→</b><span>Risk & Impact</span><b>→</b><span>Adaptation / Mitigation Planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 MODELLING -->
+  <section id="05" class="section">
+    <div class="container">
+      <h2 class="stitle id">05. Pemodelan Hidrologi & Mitigasi Risiko Bencana DAS</h2>
+      <h2 class="stitle en">05. Hydrological Modelling & Watershed Disaster Risk Mitigation</h2>
+      
+      <div class="project-wrap">
+        <div class="project-visual"><img src="runoff-map.jpg" alt="Peta Koefisien Limpasan Sub DAS Way Urang"></div>
+        <div class="project-body">
+          <h3 class="id">Analisis Potensi Banjir Berbasis GIS, Remote Sensing, dan Data Lapangan</h3>
+          <h3 class="en">Flood Potential Analysis Based on GIS, Remote Sensing, and Field Data</h3>
+          <div class="project-meta"><span>Way Urang Sub-Watershed, Pesawaran, Lampung</span><span>Peran: First Author / Lead Researcher</span></div>
+
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary id" href="https://ijddi.net/index.php/ijddi/article/view/112" target="_blank" rel="noopener">Buka Jurnal Publikasi (IJDDI Vol. 5 2025) ↗</a>
+            <a class="btn secondary en" href="https://ijddi.net/index.php/ijddi/article/view/112" target="_blank" rel="noopener">Open Publication Journal (IJDDI Vol. 5 2025) ↗</a>
+          </div>
+
+          <h4 class="section-lbl id">Tentang Proyek</h4><h4 class="section-lbl en">About the Project</h4>
+          <p class="id">Penelitian ini mengembangkan pendekatan untuk menilai potensi banjir berdasarkan hubungan antara karakteristik fisik DAS, curah hujan, dan kapasitas sungai. Analisis dilakukan pada Way Urang Sub-Watershed seluas sekitar 20,2 km² dengan mengintegrasikan: Remote sensing → GIS → data curah hujan → survei lapangan → hydrological analysis.</p>
+          <p class="id">Tujuannya bukan hanya menghitung debit puncak, tetapi memahami mengapa suatu wilayah menghasilkan limpasan tinggi dan bagian mana yang memiliki kerentanan lebih besar terhadap banjir.</p>
+
+          <p class="en">This research developed an approach to assess flood potential based on the relationship between physical watershed characteristics, rainfall, and river capacity. The analysis was conducted on the Way Urang Sub-Watershed covering approximately 20.2 km² by integrating: Remote sensing → GIS → rainfall data → field surveys → hydrological analysis.</p>
+          <p class="en">The goal was not just calculating peak discharge, but understanding why an area generates high runoff and which parts have greater vulnerability to flooding.</p>
+
+          <h4 class="section-lbl id">Pertanyaan yang Dikaji</h4><h4 class="section-lbl en">Research Question</h4>
+          <p class="id">Bagaimana karakteristik fisik DAS dan intensitas hujan memengaruhi limpasan, dan apakah kapasitas sungai mampu menampung debit puncak yang dihasilkan? Untuk menjawab pertanyaan tersebut, penelitian menghubungkan beberapa komponen utama:</p>
+          <p class="en">How do physical watershed characteristics and rainfall intensity affect runoff, and is the river capacity able to accommodate the generated peak discharge? To answer this question, the research connected several key components:</p>
+
+          <div class="logic-flow-horizontal id">
+            <span>Topografi</span><b>→</b><span>Tutupan/kerapatan vegetasi</span><b>→</b><span>Infiltrasi tanah</span><b>→</b><span>Drainage density</span><b>→</b><span>Runoff coefficient</span><b>→</b><span>Rainfall intensity</span><b>→</b><span>Peak discharge</span><b>→</b><span>Channel capacity</span><b>→</b><span>Flood potential</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Topography</span><b>→</b><span>Vegetation cover/density</span><b>→</b><span>Soil infiltration</span><b>→</b><span>Drainage density</span><b>→</b><span>Runoff coefficient</span><b>→</b><span>Rainfall intensity</span><b>→</b><span>Peak discharge</span><b>→</b><span>Channel capacity</span><b>→</b><span>Flood potential</span>
+          </div>
+
+          <h4 class="section-lbl id">Data yang Digunakan</h4><h4 class="section-lbl en">Data Used</h4>
+          <ul class="custom-list id">
+            <li><strong>Remote Sensing:</strong> Sentinel-2 Level-2A. Digunakan untuk memperoleh NDVI dan mengestimasi kelas kerapatan vegetasi.</li>
+            <li><strong>Topografi:</strong> DEMNAS. Digunakan untuk memperoleh: slope; jaringan sungai; panjang saluran; dan drainage density.</li>
+            <li><strong>Data Hidrometeorologi:</strong> Data curah hujan harian periode 2014–2023 digunakan untuk menghitung intensitas hujan yang menjadi salah satu komponen estimasi debit puncak.</li>
+            <li><strong>Data Lapangan:</strong> Survei dilakukan untuk memperoleh: kerapatan kanopi; laju infiltrasi tanah; penampang sungai; kedalaman sungai; dan kondisi lapangan terkait kejadian banjir.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Remote Sensing:</strong> Sentinel-2 Level-2A. Used to derive NDVI and estimate vegetation density classes.</li>
+            <li><strong>Topography:</strong> DEMNAS. Used to derive: slope; river networks; channel length; and drainage density.</li>
+            <li><strong>Hydrometeorological Data:</strong> Daily rainfall data for the 2014–2023 period used to calculate rainfall intensity as a component for peak discharge estimation.</li>
+            <li><strong>Field Data:</strong> Surveys conducted to obtain: canopy density; soil infiltration rates; river cross-sections; river depth; and field conditions related to flood events.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Pendekatan Analisis</h4><h4 class="section-lbl en">Analytical Approach</h4>
+          <ul class="custom-list id">
+            <li><strong>01 — Memetakan Karakteristik Fisik DAS:</strong> Karakteristik yang memengaruhi pembentukan limpasan dipetakan menggunakan GIS dan remote sensing. Parameter utama meliputi: Slope · Vegetation Density · Soil Infiltration · Drainage Density. Keempat parameter tersebut kemudian dioverlay untuk membentuk spatial mapping units.</li>
+            <li><strong>02 — Menghubungkan Citra Satelit dengan Data Lapangan:</strong> NDVI dari Sentinel-2 tidak langsung digunakan sebagai representasi kerapatan vegetasi. Data tersebut terlebih dahulu dikalibrasi menggunakan hasil pengukuran lapangan pada 25 lokasi sampling. Hubungan antara NDVI dan kerapatan kanopi menghasilkan: R² = 0,8196. Pendekatan ini memungkinkan informasi dari citra satelit dikaitkan dengan kondisi vegetasi aktual di lapangan.</li>
+            <li><strong>03 — Membentuk Peta Runoff Coefficient:</strong> Parameter slope, vegetation density, infiltration capacity, dan drainage density dikombinasikan menggunakan pendekatan Cook Method. Hasilnya berupa peta spasial runoff coefficient, yaitu estimasi proporsi curah hujan yang berpotensi berubah menjadi limpasan permukaan. Nilai rata-rata runoff coefficient sub-DAS mencapai: 69,20%.</li>
+            <li><strong>04 — Mengestimasi Debit Puncak:</strong> Runoff coefficient kemudian dikombinasikan dengan intensitas hujan; luas DAS; dan karakteristik waktu konsentrasi. Dengan Rational Method, diperoleh estimasi: Peak Discharge = 217,19 m³/s.</li>
+            <li><strong>05 — Membandingkan dengan Kapasitas Sungai:</strong> Estimasi debit puncak kemudian dibandingkan dengan kapasitas saluran berdasarkan survei morfometri sungai. Hasil pengukuran menunjukkan: Luas penampang sungai: 27,91 m². Estimasi bankfull discharge: ±9,53 m³/s.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>01 — Mapping Watershed Physical Characteristics:</strong> Characteristics affecting runoff generation were mapped using GIS and remote sensing. Key parameters include: Slope · Vegetation Density · Soil Infiltration · Drainage Density. These four parameters were overlaid to form spatial mapping units.</li>
+            <li><strong>02 — Connecting Satellite Imagery with Field Data:</strong> Sentinel-2 NDVI wasn't used directly as a vegetation density proxy. It was first calibrated using field measurements from 25 sampling locations. The relationship between NDVI and canopy density yielded: R² = 0.8196. This approach linked satellite imagery info to actual field vegetation conditions.</li>
+            <li><strong>03 — Forming the Runoff Coefficient Map:</strong> Slope, vegetation density, infiltration capacity, and drainage density were combined using the Cook Method. The result was a spatial runoff coefficient map, estimating the proportion of rainfall likely to become surface runoff. The sub-watershed's average runoff coefficient reached 69.20%.</li>
+            <li><strong>04 — Estimating Peak Discharge:</strong> The runoff coefficient was combined with rainfall intensity, watershed area, and time of concentration characteristics. Using the Rational Method, the estimate was: Peak Discharge = 217.19 m³/s.</li>
+            <li><strong>05 — Comparing with River Capacity:</strong> Peak discharge estimates were compared with channel capacity based on river morphometric surveys. Measurements showed: River cross-sectional area: 27.91 m². Estimated bankfull discharge: ±9.53 m³/s.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Temuan Utama</h4><h4 class="section-lbl en">Key Findings</h4>
+          <p class="id">Analisis menunjukkan bahwa potensi limpasan tinggi terutama berkaitan dengan kombinasi: Kemiringan lereng tinggi + kapasitas infiltrasi tanah rendah + curah hujan tinggi. Kondisi tersebut meningkatkan jumlah air yang bergerak sebagai surface runoff dan berkontribusi terhadap peningkatan debit puncak.</p>
+          <p class="id">Ketidakseimbangan antara Peak discharge ≈ 217,19 m³/s dan Bankfull capacity ≈ 9,53 m³/s menunjukkan potensi overbank flow yang tinggi, terutama pada wilayah hilir seperti Desa Bunut. Temuan spasial tersebut juga konsisten dengan informasi lapangan bahwa banjir terjadi secara berulang di wilayah hilir.</p>
+
+          <p class="en">The analysis shows that high runoff potential is primarily related to a combination of: Steep slopes + low soil infiltration capacity + high rainfall. These conditions increase the volume of water moving as surface runoff and contribute to increased peak discharge.</p>
+          <p class="en">The imbalance between Peak discharge ≈ 217.19 m³/s and Bankfull capacity ≈ 9.53 m³/s indicates a high potential for overbank flow, especially in downstream areas like Desa Bunut. This spatial finding is also consistent with field information regarding recurrent downstream flooding.</p>
+
+          <h4 class="section-lbl id">Apa yang Saya Kerjakan</h4><h4 class="section-lbl en">What I Did</h4>
+          <p class="id">Dalam penelitian ini saya terlibat dalam proses yang menghubungkan spatial analysis, environmental modelling, dan field validation, termasuk: pengolahan Sentinel-2 dan ekstraksi NDVI; pengolahan DEMNAS untuk topografi dan jaringan drainase; integrasi data curah hujan; pengolahan data survei vegetasi; analisis infiltrasi tanah; spatial overlay untuk pemodelan runoff coefficient; estimasi debit puncak menggunakan Rational Method; analisis kapasitas saluran menggunakan data morfometri lapangan; dan interpretasi hubungan antara karakteristik DAS, limpasan, dan potensi banjir.</p>
+          <p class="en">In this research I was involved in processes connecting spatial analysis, environmental modelling, and field validation, including: Sentinel-2 processing and NDVI extraction; DEMNAS processing for topography and drainage networks; rainfall data integration; vegetation survey data processing; soil infiltration analysis; spatial overlay for runoff coefficient modelling; peak discharge estimation using the Rational Method; channel capacity analysis using field morphometric data; and interpretation of relationships between watershed characteristics, runoff, and flood potential.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 REMOTE SENSING & DATA ANALYTICS -->
+  <section id="remote-sensing" class="section alt">
+    <div class="container">
+      <h2 class="stitle id">06. Remote Sensing & Data Analytics Research</h2>
+      <h2 class="stitle en">06. Remote Sensing & Data Analytics Research</h2>
+      
+      <div class="project-wrap">
+        <div class="project-body">
+          <h3 class="id">Tesis: Studi Komparasi Kinerja Estimasi Debit Sungai Menggunakan Metode Calibration Measurement Hierarchical Classification (CMHC) Berbasis Citra Sentinel-2</h3>
+          <h3 class="en">Thesis: Comparative Study of River Discharge Estimation Performance Using Sentinel-2-Based Calibration Measurement Hierarchical Classification (CMHC)</h3>
+          
+          <div class="project-meta"><span class="id">Kasus: Sungai Progo, Sungai Oyo, Sungai Serang</span><span class="en">Case: Progo, Oyo, and Serang Rivers</span><span>Universitas Gadjah Mada (2024–2026)</span></div>
+          
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary" href="https://github.com/zuhritaanissa/Tesis-Estimasi-Debit-CMHC.git" target="_blank" rel="noopener">Repo Penelitian CMHC GitHub ↗</a>
+          </div>
+
+          <ul class="custom-list id">
+            <li>Mengembangkan pendekatan estimasi debit sungai berbasis piksel menggunakan citra Sentinel-2 multitemporal.</li>
+            <li>Menerapkan metode CMHC untuk menghubungkan variabilitas spektral citra satelit dengan dinamika debit sungai hasil observasi.</li>
+            <li>Melakukan pemrosesan citra Sentinel-2 pada Google Earth Engine (GEE) yang mencakup cloud masking, ekstraksi area kajian (ROI), serta pembuatan fitur spektral.</li>
+            <li>Menerapkan algoritma Random Forest untuk klasifikasi debit sungai.</li>
+            <li>Menggunakan Python untuk mendukung prapemrosesan data, penentuan ambang kelas, analisis statistik, dan validasi model.</li>
+            <li>Mengevaluasi kinerja model menggunakan berbagai metrik statistik serta menganalisis pengaruh karakteristik morfologi sungai, khususnya efek pencampuran piksel (pixel mixing) terkait lebar sungai.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li>Developed a pixel-based river discharge estimation approach using multitemporal Sentinel-2 imagery.</li>
+            <li>Applied the CMHC method to connect satellite imagery spectral variability with observed river discharge dynamics.</li>
+            <li>Processed Sentinel-2 imagery on Google Earth Engine (GEE), including cloud masking, study area extraction (ROI), and spectral feature generation.</li>
+            <li>Applied the Random Forest algorithm for river discharge classification.</li>
+            <li>Used Python to support data preprocessing, class threshold determination, statistical analysis, and model validation.</li>
+            <li>Evaluated model performance using various statistical metrics and analyzed the influence of river morphology characteristics, especially the effect of pixel mixing related to river width.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Pertanyaan Utama</h4><h4 class="section-lbl en">Main Question</h4>
+          <p class="id">Seberapa baik CMHC berbasis Sentinel-2 dapat mengestimasi debit pada sungai dengan karakteristik morfologi yang berbeda, dan apakah pemisahan musim dapat meningkatkan kinerja model?</p>
+          <p class="id">Untuk menjawabnya, saya membandingkan tiga segmen sungai di Daerah Istimewa Yogyakarta: Sungai Progo (Lebar ±85 m), Sungai Oyo (Lebar ±35 m), Sungai Serang (Lebar ±30 m). Ketiganya memberikan kondisi yang berbeda untuk menguji keterbatasan dan kemampuan metode berbasis citra optik.</p>
+          <p class="en">How well can Sentinel-2-based CMHC estimate discharge in rivers with different morphological characteristics, and can seasonal separation improve model performance?</p>
+          <p class="en">To answer this, I compared three river segments in the Special Region of Yogyakarta: Progo River (Width ±85 m), Oyo River (Width ±35 m), Serang River (Width ±30 m). The three provided different conditions to test the limitations and capabilities of optical imagery-based methods.</p>
+
+          <h4 class="section-lbl id">Menguji Pengaruh Musim</h4><h4 class="section-lbl en">Testing Seasonal Effects</h4>
+          <p class="id">Salah satu pertanyaan utama penelitian adalah apakah kondisi musim memengaruhi hubungan antara respon spektral citra dan debit sungai. Karena itu, model diuji dalam tiga skenario:</p>
+          <p class="en">One of the main research questions was whether seasonal conditions affect the relationship between image spectral response and river discharge. Therefore, models were tested in three scenarios:</p>
+          <ul class="custom-list id">
+            <li><strong>Tanpa pemisahan musim:</strong> Satu model menggunakan seluruh kondisi pengamatan.</li>
+            <li><strong>Musim hujan:</strong> Model dilatih menggunakan data musim hujan.</li>
+            <li><strong>Musim kemarau:</strong> Model dilatih menggunakan data musim kemarau.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Without seasonal separation:</strong> One model using all observation conditions.</li>
+            <li><strong>Wet season:</strong> Model trained using wet season data.</li>
+            <li><strong>Dry season:</strong> Model trained using dry season data.</li>
+            <li><strong>Dry season:</strong> Model trained using dry season data.</li>
+          </ul>
+          <p class="id">Seluruh skenario kemudian dievaluasi menggunakan data uji independen periode 2022–2024. Kinerja model dinilai menggunakan: RMSE (besarnya kesalahan estimasi), rRMSE (kesalahan relatif terhadap skala debit), dan NSE (kemampuan model mereproduksi variasi temporal debit).</p>
+          <p class="en">All scenarios were then evaluated using independent test data for the 2022–2024 period. Model performance was assessed using: RMSE (estimation error magnitude), rRMSE (relative error to discharge scale), and NSE (the model's ability to reproduce temporal discharge variation).</p>
+
+          <h4 class="section-lbl id">Hasil Utama</h4><h4 class="section-lbl en">Main Results</h4>
+          <p class="id"><strong>Sungai Progo — Kinerja Paling Stabil.</strong> Sungai Progo, dengan lebar saluran sekitar 85 m, menunjukkan kinerja terbaik. Pada skenario tanpa pemisahan musim: NSE = 0,64 | RMSE = 20,08 m³/s | rRMSE = 41,74%.</p>
+          <p class="id">Nilai NSE positif menunjukkan bahwa model mampu mereproduksi variasi temporal debit dengan cukup baik. Model juga mampu mengikuti sebagian besar pola kenaikan dan penurunan debit, meskipun masih menunjukkan kecenderungan underestimation pada debit puncak.</p>
+          <p class="id">Yang menarik, pemisahan musim justru menurunkan performa model: Musim hujan → NSE −0,23, Musim kemarau → NSE −2,22. Artinya, pada Sungai Progo, pemisahan musim tidak memberikan keuntungan dibandingkan penggunaan seluruh variasi kondisi debit dalam satu model.</p>
+          
+          <p class="id"><strong>Sungai Oyo & Serang — Keterbatasan Spatial Resolution.</strong> Kondisinya berbeda pada Sungai Oyo dan Sungai Serang. Sungai Oyo (Lebar saluran ±35 m), Kinerja terbaik: NSE = −0,04, rRMSE = 242,87%. Sungai Serang (Lebar saluran ±30 m), Kinerja terbaik: NSE = −0,37, rRMSE = 104,82%. Secara umum, kedua sungai menghasilkan NSE negatif pada seluruh skenario, menunjukkan bahwa model belum mampu mereproduksi dinamika debit secara memadai.</p>
+
+          <p class="en"><strong>Progo River — Most Stable Performance.</strong> Progo River, with a channel width around 85 m, showed the best performance. In the scenario without seasonal separation: NSE = 0.64 | RMSE = 20.08 m³/s | rRMSE = 41.74%.</p>
+          <p class="en">A positive NSE value indicates the model can reproduce temporal discharge variations quite well. The model could also follow most discharge rise and fall patterns, although still showing an underestimation tendency at peak discharge.</p>
+          <p class="en">Interestingly, seasonal separation actually decreased model performance: Wet season → NSE −0.23, Dry season → NSE −2.22. Meaning, for the Progo River, seasonal separation offers no advantage compared to using all discharge condition variations in a single model.</p>
+          <p class="en"><strong>Oyo & Serang Rivers — Spatial Resolution Limitations.</strong> Conditions were different for the Oyo and Serang Rivers. Oyo River (Channel width ±35 m), Best performance: NSE = −0.04, rRMSE = 242.87%. Serang River (Channel width ±30 m), Best performance: NSE = −0.37, rRMSE = 104.82%. Generally, both rivers yielded negative NSEs across all scenarios, indicating the model cannot adequately reproduce discharge dynamics.</p>
+
+          <h4 class="section-lbl id">Mengapa Performanya Berbeda?</h4><h4 class="section-lbl en">Why Did Performance Differ?</h4>
+          <p class="id">Temuan utama penelitian justru muncul dari perbandingan ketiga sungai tersebut. <strong>Lebar Sungai Menjadi Faktor Kunci.</strong> Resolusi spasial Sentinel-2 adalah 10 m. Pada Sungai Progo yang memiliki lebar sekitar 85 m, badan air masih dapat direpresentasikan oleh sejumlah piksel yang relatif dominan terdiri atas air.</p>
+          <p class="id">Sebaliknya, pada Sungai Oyo dan Serang yang hanya memiliki lebar sekitar 30–35 m, sebagian piksel dapat merekam campuran: Air + Vegetasi Riparian + Daratan. Kondisi ini disebut mixed pixel. Akibatnya, perubahan debit tidak selalu menghasilkan perubahan respon spektral yang cukup jelas untuk ditangkap oleh model. Dengan demikian, keterbatasan performa pada Oyo dan Serang lebih berkaitan dengan keterwakilan spasial badan air pada resolusi citra daripada sekadar perbedaan musim.</p>
+          
+          <p class="en">The main research finding emerged from comparing these three rivers. <strong>River Width Became the Key Factor.</strong> Sentinel-2 spatial resolution is 10 m. On the Progo River, which has a width of about 85 m, the water body can still be represented by a number of pixels predominantly composed of water.</p>
+          <p class="en">Conversely, on the Oyo and Serang Rivers, which only have a width of about 30–35 m, some pixels might record a mixture: Water + Riparian Vegetation + Land. This condition is called mixed pixel. Consequently, discharge changes do not always produce spectral response changes clear enough to be captured by the model. Thus, performance limitations on the Oyo and Serang are more related to the spatial representation of water bodies at image resolution rather than mere seasonal differences.</p>
+
+          <h4 class="section-lbl id">Temuan Kunci Penelitian</h4><h4 class="section-lbl en">Key Research Findings</h4>
+          <p class="id">Penelitian menunjukkan bahwa pemisahan musim tidak secara konsisten meningkatkan performa estimasi debit. Sebaliknya, faktor yang lebih menentukan adalah karakteristik morfologi dan keterwakilan badan air pada citra. Secara sederhana:</p>
+          <p class="en">Research shows that seasonal separation does not consistently improve discharge estimation performance. Instead, a more determining factor is morphological characteristics and water body representation in imagery. Simply put:</p>
+          
+          <div class="logic-flow-horizontal id">
+            <span>Sungai Lebih Lebar</span><b>→</b><span>lebih banyak piksel air murni</span><b>→</b><span>respon spektral lebih representatif</span><b>→</b><span>hubungan spektral–debit lebih stabil</span>
+          </div>
+          <div class="logic-flow-horizontal id">
+            <span>Sungai Lebih Sempit</span><b>→</b><span>proporsi mixed pixel meningkat</span><b>→</b><span>pengaruh vegetasi riparian lebih besar</span><b>→</b><span>respon spektral terhadap perubahan debit melemah</span><b>→</b><span>estimasi menjadi kurang stabil</span>
+          </div>
+          
+          <div class="logic-flow-horizontal en">
+            <span>Wider Rivers</span><b>→</b><span>more pure water pixels</span><b>→</b><span>more representative spectral response</span><b>→</b><span>more stable spectral–discharge relationship</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Narrower Rivers</span><b>→</b><span>mixed pixel proportion increases</span><b>→</b><span>greater riparian vegetation influence</span><b>→</b><span>spectral response to discharge change weakens</span><b>→</b><span>estimation becomes less stable</span>
+          </div>
+          
+          <p class="id">Temuan ini menunjukkan bahwa kualitas hasil estimasi tidak hanya ditentukan oleh algoritma, tetapi juga oleh kesesuaian antara karakteristik objek di lapangan dan resolusi spasial data penginderaan jauh.</p>
+          <p class="en">These findings indicate that estimation result quality is determined not only by algorithms, but also by the suitability between field object characteristics and remote sensing data spatial resolution.</p>
+
+          <h4 class="section-lbl id">Apa yang Saya Kerjakan</h4><h4 class="section-lbl en">What I Did</h4>
+          <p class="id">Dalam tesis ini saya mengembangkan workflow analisis secara end-to-end, mulai dari data mentah hingga evaluasi model.</p>
+          <p class="en">In this thesis, I developed an end-to-end analysis workflow, from raw data to model evaluation.</p>
+          <ul class="custom-list id">
+            <li><strong>Google Earth Engine:</strong> preprocessing Sentinel-2; cloud masking; ROI extraction; spectral feature generation; pengolahan data multitemporal.</li>
+            <li><strong>Python:</strong> preprocessing data; penentuan ambang kelas debit; pengolahan dataset; analisis statistik; model evaluation.</li>
+            <li><strong>Machine Learning:</strong> Random Forest untuk klasifikasi kelas debit.</li>
+            <li><strong>Model Evaluation:</strong> RMSE; rRMSE; NSE; analisis hidrograf; perbandingan performa antar sungai dan antar skenario.</li>
+            <li><strong>Spatial Interpretation:</strong> membandingkan performa model dengan lebar saluran; menganalisis pengaruh mixed pixel dan vegetasi riparian; mengevaluasi keterbatasan penerapan metode pada sungai tropis.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Google Earth Engine:</strong> Sentinel-2 preprocessing; cloud masking; ROI extraction; spectral feature generation; multitemporal data processing.</li>
+            <li><strong>Python:</strong> data preprocessing; discharge class threshold determination; dataset processing; statistical analysis; model evaluation.</li>
+            <li><strong>Machine Learning:</strong> Random Forest for discharge class classification.</li>
+            <li><strong>Model Evaluation:</strong> RMSE; rRMSE; NSE; hydrograph analysis; performance comparison across rivers and scenarios.</li>
+            <li><strong>Spatial Interpretation:</strong> comparing model performance with channel width; analyzing mixed pixel and riparian vegetation influence; evaluating the method's application limitations on tropical rivers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 WEBGIS -->
+  <section id="decision" class="section">
+    <div class="container">
+      <h2 class="stitle id">07. Spatial Decision Support: Building Platform WebGIS</h2>
+      <h2 class="stitle en">07. Spatial Decision Support: Building Platform WebGIS</h2>
+      
+      <div class="project-wrap">
+        <div class="project-visual"><img src="webgis-sleman.jpg" alt="WebGIS Kesesuaian Lahan"></div>
+        <div class="project-body">
+          <h3 class="id">WebGIS Kesesuaian Lahan Sawah Irigasi</h3>
+          <h3 class="en">Irrigated Rice Land Suitability WebGIS</h3>
+          <div class="project-meta"><span>Kabupaten Sleman</span><span>QGIS · Multi-Criteria Analysis · WebGIS</span></div>
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary" href="https://zuhritaanissa.github.io/webgis-kesesuaian-padi-sleman/" target="_blank" rel="noopener">Lihat proyek interaktif ↗</a>
+          </div>
+
+          <p class="id">Proyek ini mengembangkan WebGIS interaktif untuk mengevaluasi kesesuaian lahan sawah irigasi di Kabupaten Sleman. Tujuan utamanya adalah mengintegrasikan berbagai karakteristik lingkungan yang memengaruhi kesesuaian lahan ke dalam satu analisis spasial, sehingga hasil akhirnya berupa peta zonasi yang menunjukkan tingkat kesesuaian setiap lokasi.</p>
+          <p class="en">This project developed an interactive WebGIS to evaluate irrigated rice-field suitability in Sleman Regency. The main goal was to integrate various environmental characteristics affecting land suitability into a single spatial analysis, producing a zonation map showing the suitability level of each location.</p>
+
+          <h4 class="section-lbl id">Pertanyaan yang Dikaji</h4><h4 class="section-lbl en">Research Question</h4>
+          <p class="id">Di mana lokasi yang memiliki kondisi lingkungan paling sesuai untuk pengembangan sawah irigasi? Untuk menjawab pertanyaan tersebut, saya mengintegrasikan beberapa parameter yang mewakili kondisi biofisik lahan: Land Surface Temperature, Soil pH, Soil Depth, Slope, Soil Texture.</p>
+          <p class="en">Where are the locations possessing the most suitable environmental conditions for irrigated rice-field development? To answer this question, I integrated several parameters representing land biophysical conditions: Land Surface Temperature, Soil pH, Soil Depth, Slope, Soil Texture.</p>
+
+          <h4 class="section-lbl id">Data & Analisis</h4><h4 class="section-lbl en">Data & Analysis</h4>
+          <ul class="custom-list id">
+            <li><strong>Landsat-8:</strong> → Land Surface Temperature.</li>
+            <li><strong>SoilGrids & Soil Texture Dataset:</strong> → Karakteristik tekstur tanah, pH tanah, dan kedalaman tanah. Data ini berasal dari SoilGrids (https://soilgrids.org/) melalui produk data Depth to Bedrock (BDTICM) yang memprediksi jarak vertikal dari permukaan tanah hingga menyentuh lapisan batuan induk keras. Namun skalanya 250 m, sebagai masukan ke depannya diperlukan data dengan resolusi spasial yang lebih baik.</li>
+            <li><strong>SRTM 30 m DEM:</strong> → kemiringan lereng.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Landsat-8:</strong> → Land Surface Temperature.</li>
+            <li><strong>SoilGrids & Soil Texture Dataset:</strong> → Soil texture characteristics, soil pH, and soil depth. This data originates from SoilGrids (https://soilgrids.org/) via the Depth to Bedrock (BDTICM) product predicting vertical distance from the surface to solid bedrock. However, its scale is 250 m; future inputs require better spatial resolution.</li>
+            <li><strong>SRTM 30 m DEM:</strong> → slope gradient.</li>
+          </ul>
+          <p class="id">Dataset tersebut memiliki format, resolusi, dan karakteristik yang berbeda sehingga perlu diharmonisasi terlebih dahulu sebelum dilakukan analisis spasial.</p>
+          <p class="en">These datasets have different formats, resolutions, and characteristics, so they needed to be harmonized first prior to spatial analysis.</p>
+
+          <h4 class="section-lbl id">Workflow & Evaluasi</h4><h4 class="section-lbl en">Workflow & Evaluation</h4>
+          <div class="logic-flow-horizontal id">
+            <span>Environmental Datasets</span><b>→</b><span>Data Harmonization</span><b>→</b><span>Reclassification</span><b>→</b><span>Spatial Overlay</span><b>→</b><span>Suitability Evaluation</span><b>→</b><span>S1 · S2 · S3 · N</span><b>→</b><span>Interactive WebGIS</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Environmental Datasets</span><b>→</b><span>Data Harmonization</span><b>→</b><span>Reclassification</span><b>→</b><span>Spatial Overlay</span><b>→</b><span>Suitability Evaluation</span><b>→</b><span>S1 · S2 · S3 · N</span><b>→</b><span>Interactive WebGIS</span>
+          </div>
+          <p class="id">Klasifikasi kesesuaian menggunakan pendekatan <em>Liebig's Law of the Minimum</em>, sehingga parameter yang paling membatasi menjadi faktor penentu kelas kesesuaian akhir. Suatu lokasi tidak dapat dikategorikan sangat sesuai hanya karena sebagian besar parameternya baik apabila terdapat satu faktor pembatas yang sangat kuat.</p>
+          <p class="en">Suitability classification utilizes <em>Liebig's Law of the Minimum</em>, so the most limiting parameter determines the final suitability class. A location cannot be categorized as highly suitable just because most parameters are good if there's one very strong limiting factor.</p>
+          
+          <h4 class="section-lbl id">Apa yang Saya Kerjakan</h4><h4 class="section-lbl en">What I Did</h4>
+          <ul class="custom-list id">
+            <li>Mengumpulkan dan mengintegrasikan berbagai dataset lingkungan.</li>
+            <li>Melakukan harmonisasi data spasial dan reclassification berdasarkan kriteria kesesuaian.</li>
+            <li>Melakukan spatial overlay dan menerapkan logika limiting factor untuk menentukan kelas kesesuaian.</li>
+            <li>Menghasilkan peta kesesuaian (S1/S2/S3/N) dan menyajikan hasil analisis dalam bentuk WebGIS interaktif.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li>Collected and integrated various environmental datasets.</li>
+            <li>Performed spatial data harmonization and reclassification based on suitability criteria.</li>
+            <li>Performed spatial overlay and applied limiting factor logic to determine suitability classes.</li>
+            <li>Produced suitability maps (S1/S2/S3/N) and presented the analysis in an interactive WebGIS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 PLUGIN -->
+  <section id="tools" class="section alt">
+    <div class="container">
+      <h2 class="stitle id">08. Technical Development: Building Plugins</h2>
+      <h2 class="stitle en">08. Technical Development: Building Plugins</h2>
+      
+      <div class="project-wrap">
+        <div class="project-body">
+          <h3 class="id">Multi-Index Vegetation QGIS Plugin</h3>
+          <h3 class="en">Multi-Index Vegetation QGIS Plugin</h3>
+          <div class="project-meta"><span>Python · PyQGIS · GDAL · NumPy</span></div>
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary" href="https://github.com/zuhritaanissa/multi-indeks-vegetasi" target="_blank" rel="noopener">Source Code: GitHub ↗</a>
+          </div>
+
+          <p class="id">Saya mengembangkan QGIS Processing Plugin untuk menghitung 14 indeks vegetasi dari data multispektral secara lebih praktis dan terstruktur. Daripada menghitung formula secara manual satu per satu, saya mengemas formula ilmiah tersebut menjadi satu tool analitik yang dapat digunakan langsung di QGIS.</p>
+          <p class="id">Plugin ini dirancang agar dapat digunakan untuk berbagai sumber citra multispektral, termasuk: Sentinel-2 · Landsat · PlanetScope · UAV Multispectral.</p>
+          
+          <p class="en">I developed a QGIS Processing Plugin to calculate 14 vegetation indices from multispectral data more practically and structurally. Rather than calculating formulas manually one by one, I packaged those scientific formulas into a single analytical tool directly usable in QGIS.</p>
+          <p class="en">This plugin is designed for various multispectral imagery sources, including: Sentinel-2 · Landsat · PlanetScope · UAV Multispectral.</p>
+
+          <h4 class="section-lbl id">Apa yang Bisa Dilakukan?</h4><h4 class="section-lbl en">What Can It Do?</h4>
+          <ul class="custom-list id">
+            <li><strong>Vegetation Condition & Productivity:</strong> NDVI · EVI · CIred-edge · NDRE. Untuk melihat kondisi vegetasi, kehijauan, produktivitas, dan karakteristik tajuk.</li>
+            <li><strong>Biomass & Soil Background:</strong> SAVI · OSAVI · WDVI · RDVI · MSR. Untuk analisis biomassa dan kondisi vegetasi dengan mempertimbangkan pengaruh latar belakang tanah.</li>
+            <li><strong>Chlorophyll & Nitrogen:</strong> GNDVI · CIgreen · TCARI/OSAVI. Untuk analisis yang berkaitan dengan kandungan klorofil dan status vegetasi.</li>
+            <li><strong>Vegetation Structure & LAI:</strong> REIP · MCARI2. Untuk analisis struktur tajuk dan parameter vegetasi seperti Leaf Area Index (LAI).</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Vegetation Condition & Productivity:</strong> NDVI · EVI · CIred-edge · NDRE. To assess vegetation condition, greenness, productivity, and canopy characteristics.</li>
+            <li><strong>Biomass & Soil Background:</strong> SAVI · OSAVI · WDVI · RDVI · MSR. For biomass and vegetation condition analysis considering soil background influence.</li>
+            <li><strong>Chlorophyll & Nitrogen:</strong> GNDVI · CIgreen · TCARI/OSAVI. For analysis related to chlorophyll content and vegetation status.</li>
+            <li><strong>Vegetation Structure & LAI:</strong> REIP · MCARI2. For canopy structure analysis and vegetation parameters like Leaf Area Index (LAI).</li>
+          </ul>
+
+          <h4 class="section-lbl id">Fitur Utama</h4><h4 class="section-lbl en">Main Features</h4>
+          <ul class="custom-list id">
+            <li><strong>Dynamic Band Mapping:</strong> Pengguna dapat memetakan band input sesuai kebutuhan indeks yang dipilih tanpa harus mengubah formula manual.</li>
+            <li><strong>14 Indeks dalam Satu Workflow:</strong> Diimplementasikan berdasarkan referensi ilmiah sehingga perhitungan konsisten.</li>
+            <li><strong>ROI-Based Processing:</strong> Memasukkan ROI vector untuk membatasi area analisis.</li>
+            <li><strong>Robust Raster Processing:</strong> Penanganan NoData; division by zero; invalid pixel values; dan efisiensi memori.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>Dynamic Band Mapping:</strong> Map input bands according to chosen index needs without manual formula changes.</li>
+            <li><strong>14 Indices in One Workflow:</strong> Implemented based on scientific references for consistency.</li>
+            <li><strong>ROI-Based Processing:</strong> Input vector ROI to constrain the analysis area.</li>
+            <li><strong>Robust Raster Processing:</strong> Handling NoData; division by zero; invalid pixel values; and memory efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 CAPACITY BUILDING -->
+  <section id="capacity" class="section">
+    <div class="container">
+      <h2 class="stitle id">09. Speaker on GE-ONIT “Remote Sensing for Environmental Monitoring”</h2>
+      <h2 class="stitle en">09. Speaker on GE-ONIT “Remote Sensing for Environmental Monitoring”</h2>
+      
+      <div class="project-wrap">
+        <div class="project-visual" style="height:auto; min-height:200px; padding:0;"><img src="ge-onit-presentation.jpg" alt="GE-ONIT Presentation" style="border-radius:20px 20px 0 0; border:none; max-height:450px; object-fit:contain; background:#fff;"></div>
+        <div class="project-body">
+          <div class="project-meta"><span>Invited Speaker — GE-ONIT / EAGE Online Training | 2026</span></div>
+          <div class="cta-row" style="justify-content: flex-start; margin-top:0; margin-bottom:20px;">
+            <a class="btn secondary" href="https://zuhritaanissa.github.io/GEO-NIT_A-Google-Earth-Engine-Workflow_Land-Cover-Mapping-with-Sentinel-2-and-Random-Forest-/" target="_blank" rel="noopener">Dokumentasi Materi & Workflow ↗</a>
+          </div>
+
+          <p class="id">Saya diundang sebagai speaker dalam GE-ONIT (Geophysics Online Training) 2026 untuk menyampaikan materi mengenai penerapan remote sensing dalam environmental monitoring. Materi dirancang tidak hanya untuk mengajarkan cara mengolah citra, tetapi untuk membangun pemahaman peserta mengenai bagaimana data penginderaan jauh dapat diterjemahkan menjadi informasi lingkungan yang dapat digunakan untuk analisis dan pengambilan keputusan.</p>
+          <p class="en">I was invited as a speaker in GE-ONIT (Geophysics Online Training) 2026 to deliver material regarding remote sensing applications in environmental monitoring. The material was designed not just to teach how to process images, but to build understanding on how remote sensing data can be translated into environmental information usable for analysis and decision-making.</p>
+
+          <h4 class="section-lbl id">Lima Lapisan Pemahaman</h4><h4 class="section-lbl en">Five Layers of Understanding</h4>
+          <ul class="custom-list id">
+            <li><strong>01 — Memahami Data:</strong> Hubungan: Energi elektromagnetik → Sensor → Band → Piksel → Nilai Digital.</li>
+            <li><strong>02 — Memahami Respons Objek:</strong> Karakteristik fisik/kimia objek (air, klorofil, tekstur) yang memengaruhi respons spektral.</li>
+            <li><strong>03 — Mengubah Citra Menjadi Informasi:</strong> Pendekatan interpretasi (Visual, Multispectral, Temporal, Spatial, Supporting Data).</li>
+            <li><strong>04 — Memahami Metode Klasifikasi:</strong> Pemilihan metode (Supervised, Unsupervised, Machine Learning, OBIA) berdasarkan tujuan analisis.</li>
+            <li><strong>05 — Membangun Workflow Nyata:</strong> Pengolahan citra end-to-end dari pemilihan data, fitur, klasifikasi, hingga uji akurasi.</li>
+          </ul>
+          <ul class="custom-list en">
+            <li><strong>01 — Understanding Data:</strong> Relationship: Electromagnetic energy → Sensor → Band → Pixel → Digital Value.</li>
+            <li><strong>02 — Understanding Object Response:</strong> Physical/chemical characteristics (water, chlorophyll, texture) affecting spectral response.</li>
+            <li><strong>03 — Turning Imagery Into Information:</strong> Interpretation approaches (Visual, Multispectral, Temporal, Spatial, Supporting Data).</li>
+            <li><strong>04 — Understanding Classification Methods:</strong> Method selection (Supervised, Unsupervised, Machine Learning, OBIA) based on analysis objectives.</li>
+            <li><strong>05 — Building a Real Workflow:</strong> End-to-end processing from data selection, features, classification, to accuracy assessment.</li>
+          </ul>
+
+          <h4 class="section-lbl id">Dari Konsep ke Hands-on</h4><h4 class="section-lbl en">From Concept to Hands-on</h4>
+          <div class="logic-flow-horizontal id">
+            <span>Sentinel-2 Level-2A</span><b>→</b><span>preprocessing</span><b>→</b><span>spectral features</span><b>→</b><span>NDVI & NDWI</span><b>→</b><span>training samples</span><b>→</b><span>Random Forest</span><b>→</b><span>classification</span><b>→</b><span>accuracy assessment</span>
+          </div>
+          <div class="logic-flow-horizontal en">
+            <span>Sentinel-2 Level-2A</span><b>→</b><span>preprocessing</span><b>→</b><span>spectral features</span><b>→</b><span>NDVI & NDWI</span><b>→</b><span>training samples</span><b>→</b><span>Random Forest</span><b>→</b><span>classification</span><b>→</b><span>accuracy assessment</span>
+          </div>
+          <p class="id">Peserta tidak hanya melihat hasil akhir, tetapi diperkenalkan pada alasan di balik setiap tahapan dalam workflow. Random Forest ditempatkan sebagai salah satu alat dalam sebuah proses analisis yang lebih luas, bukan sebagai tujuan pembelajaran itu sendiri.</p>
+          <p class="en">Participants were introduced to the reasoning behind every workflow stage. Random Forest was positioned as a tool within a broader analysis process, not as the learning objective itself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="container" style="background:var(--green-900); padding: 60px; border-radius: 24px; color:#fff; text-align:center;">
+      <h2 class="stitle id" style="color:#fff; margin-bottom:16px;">Siap berkontribusi dalam inisiatif strategis perencanaan ruang, lingkungan, dan analitik geospasial.</h2>
+      <h2 class="stitle en" style="color:#fff; margin-bottom:16px;">Ready to contribute to strategic initiatives in spatial planning, environment, and geospatial analytics.</h2>
+      
+      <div class="cta-row" style="margin-top:40px;">
+        <a class="btn secondary id" href="CV_Anissa_Zuhrita.pdf" download>Unduh Curriculum Vitae (PDF)</a>
+        <a class="btn secondary en" href="CV_Anissa_Zuhrita.pdf" download>Download Curriculum Vitae (PDF)</a>
+      </div>
+      
+      <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:32px; font-weight:600;">
+        <a href="mailto:zuhritaanissa@gmail.com" style="text-decoration:underline; text-underline-offset:4px; color:#fff;">zuhritaanissa@gmail.com</a>
+        <a href="https://linkedin.com/in/anissazuhrita/" target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:4px; color:#fff;">LinkedIn</a>
+        <a href="https://github.com/zuhritaanissa" target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:4px; color:#fff;">GitHub</a>
+        <a href="tel:+6282387449239" style="text-decoration:underline; text-underline-offset:4px; color:#fff;">+62 823 8744 9239</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- JAVASCRIPT SIDEBAR TOGGLE -->
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("open");
+    document.getElementById("sidebarOverlay").classList.toggle("open");
+  }
+</script>
+
+<!-- SCRIPT BAHASA -->
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    document.getElementById('idBtn').classList.toggle('active', lang==='id');
+    document.getElementById('enBtn').classList.toggle('active', lang==='en');
+    try{ localStorage.setItem('site-lang', lang); }catch(e){}
+  }
+  document.getElementById('idBtn').addEventListener('click', function(){ setLang('id'); });
+  document.getElementById('enBtn').addEventListener('click', function(){ setLang('en'); });
+  var saved = 'id';
+  try{ saved = localStorage.getItem('site-lang') || 'id'; }catch(e){}
+  setLang(saved);
+</script>
+
+</body>
+</html>
