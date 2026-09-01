@@ -1426,75 +1426,87 @@ footer {
       <!-- 3. TESIS CMHC & UAV -->
       <div class="exp-card">
         <div class="exp-header">
-          <div class="exp-title id">3. Tesis: Studi Komparasi Kinerja Estimasi Debit Sungai Menggunakan Metode CMHC Berbasis Citra Sentinel-2 & Analisis Morfologi Berbasis UAV</div>
-          <div class="exp-title en">3. Master\'s Thesis: River Discharge Estimation Performance Comparison Using Sentinel-2 CMHC & UAV-Based Morphological Analysis</div>
+          <div class="exp-title id">3. Tesis — Studi Komparasi Kinerja Estimasi Debit Sungai Menggunakan Metode CMHC Berbasis Citra Sentinel-2 dan Analisis Morfologi Berbasis UAV</div>
+          <div class="exp-title en">3. Master\'s Thesis — Performance Comparison of River Discharge Estimation Using Sentinel-2 CMHC & UAV-Based Morphological Analysis</div>
           <div class="exp-meta">
-            <span>Case Study: Progo, Oyo, and Serang Rivers</span>
-            <span>Universitas Gadjah Mada (2024–2026)</span>
+            <span class="id">Studi Kasus: Sungai Progo, Oyo, dan Serang, Daerah Istimewa Yogyakarta</span>
+            <span class="en">Case Study: Progo, Oyo, and Serang Rivers, D.I. Yogyakarta</span>
+            <span>Universitas Gadjah Mada | 2024–2026</span>
           </div>
         </div>
 
         <div class="cta-row id" style="justify-content: flex-start; margin-top:14px; margin-bottom:18px;">
-          <a class="btn secondary" href="https://github.com/zuhritaanissa/Tesis-Estimasi-Debit-CMHC.git" target="_blank" rel="noopener">Repo Penelitian CMHC GitHub ↗</a>
+          <a class="btn secondary" href="https://github.com/zuhritaanissa/Tesis-Estimasi-Debit-CMHC.git" target="_blank" rel="noopener">Repositori Penelitian CMHC — GitHub ↗</a>
         </div>
         <div class="cta-row en" style="justify-content: flex-start; margin-top:0; margin-bottom:18px;">
           <a class="btn secondary" href="https://github.com/zuhritaanissa/Tesis-Estimasi-Debit-CMHC.git" target="_blank" rel="noopener">CMHC Research GitHub Repository ↗</a>
         </div>
 
         <div class="id">
-          <p>Mengembangkan pendekatan estimasi debit sungai berbasis piksel menggunakan citra Sentinel-2 multitemporal yang divalidasi dengan analisis morfologi sungai resolusi tinggi berbasis data fotogrametri UAV.</p>
+          <h4 class="sub-lbl">Gambaran Penelitian</h4>
+          <p>Mengembangkan dan mengevaluasi pendekatan estimasi debit sungai berbasis piksel menggunakan citra Sentinel-2 multitemporal, dengan mempertimbangkan karakteristik morfologi sungai yang diperoleh dari data fotogrametri UAV beresolusi tinggi.</p>
+          <p>Penelitian mengintegrasikan penginderaan jauh satelit, fotogrametri UAV, analisis GIS, dan machine learning untuk mengevaluasi kinerja metode CMHC pada sungai dengan karakteristik morfologi yang berbeda.</p>
 
           <h4 class="sub-lbl">Alur Kerja & Metodologi</h4>
           <ul class="custom-list">
-            <li><strong>Pemrosesan Citra Satelit (GEE):</strong> Melakukan pemrosesan citra Sentinel-2 pada Google Earth Engine (GEE) yang mencakup cloud masking, ekstraksi area kajian (ROI), serta pembuatan fitur spektral untuk menghubungkan variabilitas spektral citra dengan dinamika debit sungai.</li>
-            <li><strong>Pemrosesan Fotogrametri UAV (Agisoft Metashape):</strong> Melakukan akuisisi dan pemrosesan data foto udara menggunakan drone DJI Mavic 3 Multispectral secara end-to-end (dari photo alignment hingga pembentukan dense cloud). Melakukan klasifikasi ground points secara teliti untuk memisahkan vegetasi riparian, guna menghasilkan Digital Terrain Model (DTM) murni dan orthomosaic beresolusi tinggi.</li>
-            <li><strong>Ekstraksi Parameter Morfologi (ArcGIS):</strong> Mengekstrak tiga parameter morfologi saluran mikro—lebar penampang sungai rata-rata, gradien saluran (dari beda elevasi hulu-hilir), dan sinuositas—berdasarkan DTM dan orthomosaic UAV untuk mengevaluasi batasan fisik area kajian.</li>
-            <li><strong>Pemodelan & Machine Learning (Google Colab):</strong> Menerapkan algoritma Random Forest untuk klasifikasi debit sungai dan menggunakan Python untuk mendukung prapemrosesan data, penentuan ambang kelas, analisis statistik, serta validasi model.</li>
+            <li><strong>Pengolahan Citra Satelit — Google Earth Engine:</strong> Mengolah citra Sentinel-2 multitemporal, meliputi cloud masking, ekstraksi Region of Interest (ROI), dan pembentukan fitur spektral untuk menghubungkan karakteristik spektral citra dengan variasi debit sungai.</li>
+            <li><strong>Fotogrametri UAV — Agisoft Metashape:</strong> Mengolah data foto udara dari DJI Mavic 3 Multispectral, mulai dari photo alignment dan pembentukan dense cloud hingga klasifikasi ground points untuk menghasilkan Digital Terrain Model (DTM) dan orthomosaic beresolusi tinggi.</li>
+            <li><strong>Analisis Morfologi — ArcGIS:</strong> Mengekstraksi tiga parameter morfologi saluran, yaitu lebar saluran, gradien saluran, dan sinuositas, berdasarkan DTM dan orthomosaic hasil pemrosesan UAV.</li>
+            <li><strong>Pemodelan & Analisis — Python/Google Colab:</strong> Menerapkan Random Forest untuk klasifikasi kelas debit serta menggunakan Python untuk prapemrosesan data, penentuan ambang kelas, analisis statistik, dan validasi model.</li>
           </ul>
 
-          <h4 class="sub-lbl">Fokus Analisis & Pertanyaan Utama</h4>
-          <p>Seberapa baik CMHC berbasis Sentinel-2 dapat mengestimasi debit pada sungai dengan karakteristik morfologi yang berbeda, dan apakah pemisahan musim dapat meningkatkan kinerja model?</p>
-          <p>Untuk menjawabnya, saya mengevaluasi kinerja akurasi model berdasarkan tiga parameter morfologi saluran (lebar sungai, gradien saluran, dan sinuositas) hasil ekstraksi UAV pada tiga segmen di Daerah Istimewa Yogyakarta: Sungai Progo, Sungai Oyo, dan Sungai Serang. Ketiganya memberikan kondisi morfologi yang bervariasi untuk menguji batasan fisik metode berbasis citra optik. Walaupun ketiga parameter tersebut dianalisis, nilai sinuositas yang hampir seragam dan gradien saluran yang tidak berpola konsisten membuktikan bahwa lebar sungai menjadi faktor pembatas paling dominan yang mengontrol kualitas piksel air pada resolusi menengah.</p>
+          <h4 class="sub-lbl">Fokus Analisis</h4>
+          <p>Penelitian mengevaluasi seberapa baik metode CMHC berbasis Sentinel-2 dapat mengestimasi debit pada sungai dengan karakteristik morfologi yang berbeda, serta menguji apakah pemisahan data berdasarkan musim dapat meningkatkan kinerja model.</p>
+          <p>Evaluasi dilakukan pada tiga sungai dengan karakteristik saluran yang berbeda, yaitu Progo, Oyo, dan Serang, menggunakan parameter lebar saluran, gradien, dan sinuositas yang diperoleh dari data UAV.</p>
+          <p>Hasil analisis menunjukkan bahwa variasi ketiga parameter morfologi tersebut tidak memberikan pengaruh yang sama. Lebar saluran menjadi faktor yang paling konsisten terkait dengan kualitas estimasi, khususnya karena berkaitan dengan proporsi piksel air dan potensi mixed pixel pada citra Sentinel-2 beresolusi 10 m.</p>
 
           <h4 class="sub-lbl">Hasil Utama</h4>
-          <p><strong>Sungai Progo — Kinerja Paling Stabil:</strong> Dengan lebar saluran hasil pengukuran UAV mencapai ±85 m, sungai ini menunjukkan kinerja terbaik (Skenario tanpa pemisahan musim: <strong>NSE = 0,64 | RMSE = 20,08 m³/s | rRMSE = 41,74%</strong>). Model mampu mereproduksi variasi temporal debit dengan baik. Secara mengejutkan, pemisahan musim justru menurunkan performa (Musim hujan → NSE −0,23, Musim kemarau → NSE −2,22), membuktikan bahwa kelengkapan variasi data debit dalam satu model lebih krusial.</p>
-          <p><strong>Sungai Oyo & Serang — Keterbatasan Resolusi Spasial:</strong> Kinerja menurun drastis pada Sungai Oyo (Lebar ±35 m, NSE = −0,04) dan Sungai Serang (Lebar ±30 m, NSE = −0,37). Berdasarkan analisis morfologi, keterbatasan ini murni diakibatkan oleh masalah mixed pixel (pencampuran spektral antara air dan tutupan lahan riparian) pada resolusi 10 m Sentinel-2, bukan akibat perbedaan musim.</p>
+          <p><strong>Sungai Progo — Kinerja Paling Stabil:</strong> Dengan lebar saluran sekitar 85 m, Progo menunjukkan kinerja model terbaik pada skenario tanpa pemisahan musim (<strong>NSE = 0,64 | RMSE = 20,08 m³/s | rRMSE = 41,74%</strong>). Model mampu merepresentasikan variasi temporal debit dengan lebih baik dibandingkan dua lokasi lainnya. Pemisahan data berdasarkan musim justru menghasilkan kinerja yang lebih rendah pada penelitian ini.</p>
+          <p><strong>Sungai Oyo & Serang — Pengaruh Keterbatasan Resolusi Spasial:</strong> Kinerja model lebih rendah pada Sungai Oyo (lebar sekitar 35 m, NSE = −0,04) dan Sungai Serang (lebar sekitar 30 m, NSE = −0,37). Pada saluran yang lebih sempit, proporsi piksel Sentinel-2 yang mencakup campuran air dan tutupan lahan di sekitar sungai menjadi lebih besar, sehingga karakteristik spektral piksel air menjadi kurang representatif untuk estimasi debit.</p>
 
-          <h4 class="sub-lbl">Kesimpulan Berbasis Skala Lebar Saluran</h4>
+          <h4 class="sub-lbl">Temuan Utama</h4>
           <div class="logic-flow-horizontal">
-            <span>Sungai Lebih Lebar (±85m)</span><b>→</b><span>Dominasi piksel air murni</span><b>→</b><span>Respons spektral stabil</span><b>→</b><span>Estimasi debit akurat (NSE 0.64)</span>
+            <span>Lebar saluran lebih besar (~85 m)</span><b>→</b><span>Proporsi piksel air lebih dominan</span><b>→</b><span>Representasi spektral air lebih baik</span><b>→</b><span>Estimasi debit lebih stabil</span>
           </div>
           <div class="logic-flow-horizontal">
-            <span>Sungai Lebih Sempit (≤35m)</span><b>→</b><span>Dominasi mixed pixel (Air + Riparian)</span><b>→</b><span>Respons spektral bias/berisik</span><b>→</b><span>Estimasi tidak stabil</span>
+            <span>Lebar saluran lebih kecil (≤35 m)</span><b>→</b><span>Potensi mixed pixel lebih tinggi</span><b>→</b><span>Respons spektral air terpengaruh tutupan sekitar</span><b>→</b><span>Estimasi debit kurang stabil</span>
           </div>
+
+          <h4 class="sub-lbl">Nilai Geospasial Proyek</h4>
+          <p>Penelitian ini menunjukkan kemampuan dalam mengintegrasikan data satelit dan UAV, mengolah data fotogrametri menjadi produk DTM dan orthomosaic, melakukan analisis morfologi berbasis GIS, serta mengembangkan dan mengevaluasi model berbasis machine learning menggunakan Google Earth Engine dan Python.</p>
         </div>
 
         <div class="en">
-          <p>Developed a pixel-based river discharge estimation framework utilizing multitemporal Sentinel-2 optical satellite imagery, validated against high-resolution river morphology extracted from UAV photogrammetry data.</p>
+          <h4 class="sub-lbl">Research Overview</h4>
+          <p>Developed and evaluated a pixel-based river discharge estimation framework utilizing multitemporal Sentinel-2 optical imagery, accounting for river morphology characteristics derived from high-resolution UAV photogrammetry.</p>
+          <p>The research integrates satellite remote sensing, UAV photogrammetry, GIS analytics, and machine learning to benchmark CMHC method performance across rivers with contrasting channel morphology.</p>
 
           <h4 class="sub-lbl">Workflow & Methodology</h4>
           <ul class="custom-list">
-            <li><strong>Satellite Image Processing (GEE):</strong> Automated Sentinel-2 optical data preprocessing in Google Earth Engine, including cloud masking, reach ROI extraction, and spectral feature engineering to link satellite spectral dynamics with streamflow variations.</li>
-            <li><strong>UAV Photogrammetry Processing (Agisoft Metashape):</strong> Conducted end-to-end aerial survey acquisition and photogrammetric processing using DJI Mavic 3 Multispectral drone (from photo alignment to dense cloud generation). Performed ground point filtering to eliminate riparian vegetation, generating high-accuracy bare-earth Digital Terrain Models (DTM) and orthomosaics.</li>
-            <li><strong>Morphological Parameter Extraction (ArcGIS):</strong> Extracted three micro-channel morphology metrics—mean channel width, longitudinal bed gradient, and sinuosity—from UAV DTM and orthomosaic layers to evaluate physical constraints of the reaches.</li>
-            <li><strong>Modeling & Machine Learning (Google Colab):</strong> Trained Random Forest classification models using Python for discharge class estimation, threshold definition, statistical evaluation, and model validation.</li>
+            <li><strong>Satellite Image Processing — Google Earth Engine:</strong> Processed multitemporal Sentinel-2 imagery including cloud masking, Region of Interest (ROI) extraction, and spectral feature engineering to link optical spectral dynamics with discharge dynamics.</li>
+            <li><strong>UAV Photogrammetry — Agisoft Metashape:</strong> Processed DJI Mavic 3 Multispectral aerial drone imagery end-to-end (photo alignment, dense cloud, ground point classification) to generate high-resolution bare-earth DTMs and orthomosaics.</li>
+            <li><strong>Morphological Analysis — ArcGIS:</strong> Extracted three micro-channel morphology metrics—channel width, bed slope gradient, and sinuosity—from UAV-derived DTM and orthomosaics.</li>
+            <li><strong>Modeling & Analytics — Python/Google Colab:</strong> Implemented Random Forest algorithms for discharge classification alongside Python for preprocessing, threshold optimization, statistical evaluation, and model validation.</li>
           </ul>
 
-          <h4 class="sub-lbl">Core Focus & Research Questions</h4>
-          <p>How effectively can Sentinel-2-based CMHC estimate discharge across rivers with contrasting morphological characteristics, and does seasonal stratification improve model accuracy?</p>
-          <p>To answer this, model accuracy was evaluated against the three UAV-derived morphological parameters (width, gradient, sinuosity) across three reaches in Yogyakarta: Progo River, Oyo River, and Serang River. Results revealed that uniform sinuosity and inconsistent gradient trends left channel width as the dominant physical controlling factor governing pure water pixel quality at 10 m medium resolution.</p>
+          <h4 class="sub-lbl">Analysis Focus</h4>
+          <p>The study evaluated how effectively Sentinel-2-based CMHC estimates discharge across rivers with varying morphology, and whether seasonal data stratification enhances model performance.</p>
+          <p>Evaluations across Progo, Oyo, and Serang Rivers revealed that channel width is the most consistent controlling factor governing estimation accuracy, directly tied to pure water pixel proportions vs. mixed pixel contamination at 10 m resolution.</p>
 
           <h4 class="sub-lbl">Core Findings</h4>
-          <p><strong>Progo River — Optimal & Robust Performance:</strong> With UAV-measured channel width reaching ±85 m, Progo achieved the best performance (Non-seasonal model: <strong>NSE = 0.64 | RMSE = 20.08 m³/s | rRMSE = 41.74%</strong>), faithfully reproducing temporal hydrograph dynamics. Interestingly, seasonal partitioning deteriorated accuracy (Wet season NSE = -0.23, Dry season NSE = -2.22), proving comprehensive discharge range completeness in a single model is far more vital.</p>
-          <p><strong>Oyo & Serang Rivers — Spatial Resolution Limits:</strong> Performance sharply declined on Oyo (Width ±35 m, NSE = -0.04) and Serang (Width ±30 m, NSE = -0.37). Morphological analysis proved this degradation was purely driven by mixed pixel contamination (water and riparian vegetation spectral mixing) at 10 m resolution rather than seasonal differences.</p>
+          <p><strong>Progo River — Most Robust Performance:</strong> With channel width of ~85 m, Progo achieved optimal performance without seasonal stratification (<strong>NSE = 0.64 | RMSE = 20.08 m³/s | rRMSE = 41.74%</strong>), tracking temporal hydrograph dynamics effectively. Seasonal partitioning lowered model accuracy.</p>
+          <p><strong>Oyo & Serang Rivers — Spatial Resolution Limits:</strong> Performance declined on Oyo (width ~35 m, NSE = -0.04) and Serang (width ~30 m, NSE = -0.37) due to higher mixed pixel proportions from riparian edges at 10 m resolution.</p>
 
-          <h4 class="sub-lbl">Channel Width Scale-Based Conclusions</h4>
+          <h4 class="sub-lbl">Key Findings</h4>
           <div class="logic-flow-horizontal en">
-            <span>Wider River (±85m)</span><b>→</b><span>Pure Water Pixels</span><b>→</b><span>Stable Spectral Response</span><b>→</b><span>Accurate Discharge Model (NSE 0.64)</span>
+            <span>Wider channel (~85 m)</span><b>→</b><span>Dominant pure water pixels</span><b>→</b><span>Better water spectral signal</span><b>→</b><span>More stable discharge estimation</span>
           </div>
           <div class="logic-flow-horizontal en">
-            <span>Narrower River (≤35m)</span><b>→</b><span>Mixed Pixels (Water + Riparian)</span><b>→</b><span>Noisy/Biased Spectral Signal</span><b>→</b><span>Unstable Estimation</span>
+            <span>Narrower channel (≤35 m)</span><b>→</b><span>Higher mixed pixel contamination</span><b>→</b><span>Spectral signal distorted by riparian edge</span><b>→</b><span>Less stable estimation</span>
           </div>
+
+          <h4 class="sub-lbl">Geospatial Project Value</h4>
+          <p>This project demonstrates end-to-end capabilities in integrating satellite and UAV data, photogrammetric DTM/orthomosaic processing, GIS-based morphological analysis, and developing/evaluating machine learning workflows using Google Earth Engine and Python.</p>
         </div>
       </div>
 
