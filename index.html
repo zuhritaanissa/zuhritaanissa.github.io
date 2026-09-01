@@ -687,7 +687,7 @@ footer {
           <div class="sector-title en">B. Sector 2 — Housing & Urban Development</div>
 
           <div class="sector-project-name id">Proyek: UKL-UPL Pembangunan Perumahan di Kota Jambi, Provinsi Jambi & Kabupaten Musi Banyuasin, Provinsi Sumatera Selatan.</div>
-          <div class="sector-project-name en">Project: UKL-UPL (EMP) for Residential Developments in Jambi City & Musi Banyuasin Regency, South Sumatra.</div>
+          <div class="sector-project-name en">Project: UKL-UPL for Residential Estate Developments across Jambi City (Jambi) & Musi Banyuasin Regency (South Sumatra).</div>
 
           <!-- Gallery Grid Sektor 2: Perumahan & Desain 3D -->
           <div class="map-gallery-grid">
@@ -698,8 +698,8 @@ footer {
               </div>
               <div class="map-gallery-caption id">Peta Cut and Fill</div>
               <div class="map-gallery-caption en">Cut and Fill Analysis Map</div>
-              <div class="map-gallery-subcaption id">Overlay Tapak Perumahan Kedaton Lance dengan Garis Kontur Topografi</div>
-              <div class="map-gallery-subcaption en">Site Plan Overlay of Kedaton Lance with Topographic Elevation Contours</div>
+              <div class="map-gallery-subcaption id">Overlay Batas Tapak dan Garis Kontur yang Diturunkan dari DTM UAV</div>
+              <div class="map-gallery-subcaption en">Site Plan Overlay with Topographic Contours Derived from UAV DTM</div>
             </div>
 
             <!-- Item 2: Sevania Residence Pemantauan -->
@@ -709,8 +709,8 @@ footer {
               </div>
               <div class="map-gallery-caption id">Peta Pemantauan Lingkungan</div>
               <div class="map-gallery-caption en">Environmental Monitoring Map</div>
-              <div class="map-gallery-subcaption id">Titik Sampling UKL-UPL Perumahan Sevania Residence 3</div>
-              <div class="map-gallery-subcaption en">UKL-UPL Monitoring Stations for Sevania Residence 3</div>
+              <div class="map-gallery-subcaption id">Sebaran Titik Sampling UKL-UPL pada Proyek Perumahan Sevania Residence 3</div>
+              <div class="map-gallery-subcaption en">UKL-UPL In-situ Monitoring Stations for Sevania Residence 3 Project</div>
             </div>
 
             <!-- Item 3: 3D Kolam Retensi Model -->
@@ -720,26 +720,62 @@ footer {
               </div>
               <div class="map-gallery-caption id">Desain Kolam Retensi (3D)</div>
               <div class="map-gallery-caption en">Retention Pond Design (3D)</div>
-              <div class="map-gallery-subcaption id">Model Fasilitas Konservasi Air & Pengendalian Debit Limpasan</div>
-              <div class="map-gallery-subcaption en">Runoff Control & Stormwater Retention Basin Model</div>
+              <div class="map-gallery-subcaption id">Visualisasi Fasilitas Konservasi Air dan Pengendalian Limpasan Permukaan</div>
+              <div class="map-gallery-subcaption en">Runoff Control & Stormwater Retention Basin 3D Visualization</div>
             </div>
           </div>
 
           <div class="id">
-            <p><strong>Gambaran Proyek:</strong> Penyusunan dokumen UKL-UPL untuk lebih dari 15 proyek pengembangan perumahan beserta infrastruktur pendukungnya seperti jaringan jalan internal, sistem drainase, kolam retensi, dan ruang terbuka hijau.</p>
-            <p><strong>Kontribusi:</strong></p>
+            <h4 class="sub-lbl">Gambaran Proyek</h4>
+            <p>Penyusunan dokumen teknis dan lingkungan <strong>UKL-UPL untuk 15+ proyek pengembangan perumahan</strong> beserta infrastruktur pendukung, meliputi jaringan jalan internal, sistem drainase, kolam retensi, dan ruang terbuka hijau. Kajian kondisi eksisting dan topografi tapak didukung oleh <strong>pemetaan udara beresolusi tinggi menggunakan UAV</strong> untuk menyediakan data spasial yang lebih detail sebagai dasar analisis dan perencanaan.</p>
+
+            <h4 class="sub-lbl">Kontribusi & Alur Kerja</h4>
+            <p><strong>1. Akuisisi & Fotogrametri UAV</strong></p>
             <ul class="custom-list">
-              <li><strong>Analisis Spasial:</strong> Analisis spasial lokasi proyek terhadap batas administrasi, tutupan lahan sekitar, tata ruang (RTRW), topografi, dan kesesuaian lahan untuk mengevaluasi konformitas spasial dan kelayakan lokasi. Dari hasil analisis tersebut, diproduksi peta pengelolaan dan pemantauan lingkungan.</li>
-              <li><strong>Analisis Hidrologi:</strong> Melakukan perhitungan debit limpasan kondisi <em>before-and-after project</em> menggunakan Metode Rasional. Melakukan analisis hujan rancangan (distribusi probabilitas curah hujan). Mendesain sistem konservasi air: kolam retensi, sumur resapan, dan jaringan drainase.</li>
+              <li>Melakukan akuisisi foto udara menggunakan <strong>UAV Autel EVO II Pro</strong> pada area tapak perumahan untuk memperoleh data spasial beresolusi tinggi.</li>
+              <li>Mengolah foto udara menggunakan <strong>Agisoft Metashape</strong>, meliputi <em>photo alignment</em>, pembentukan <em>dense cloud</em>, klasifikasi <em>ground points</em>, hingga menghasilkan <strong>Digital Terrain Model (DTM) dan orthomosaic</strong>.</li>
+              <li>Melakukan <em>Quality Control</em> terhadap klasifikasi <em>ground points</em> untuk memperoleh representasi permukaan tanah yang sesuai sebagai dasar analisis topografi.</li>
+            </ul>
+
+            <p><strong>2. Analisis Spasial & Topografi</strong></p>
+            <ul class="custom-list">
+              <li>Menganalisis lokasi proyek terhadap <strong>batas administrasi, tutupan lahan, RTRW, dan kesesuaian lahan</strong> menggunakan data spasial dan hasil pemetaan UAV.</li>
+              <li>Memanfaatkan <strong>DTM hasil fotogrametri UAV</strong> untuk analisis topografi detail, termasuk penyusunan kontur, analisis elevasi dan kelerengan, serta perhitungan <em>cut and fill</em>.</li>
+              <li>Mengintegrasikan hasil analisis dengan data GIS untuk mendukung penyusunan peta kondisi eksisting, pengelolaan, dan pemantauan lingkungan.</li>
+            </ul>
+
+            <p><strong>3. Analisis Hidrologi & Drainase</strong></p>
+            <ul class="custom-list">
+              <li>Memanfaatkan data elevasi dan kelerengan dari DTM UAV untuk mendukung analisis <strong>debit limpasan kondisi sebelum dan setelah pembangunan</strong> menggunakan Metode Rasional.</li>
+              <li>Melakukan analisis curah hujan rancangan dan pengolahan karakteristik topografi untuk mendukung perencanaan <strong>sistem drainase, kolam retensi, dan sumur resapan</strong>.</li>
+              <li>Menganalisis arah aliran dan kondisi topografi sebagai dasar penyusunan sistem pengelolaan limpasan dan konservasi air pada kawasan proyek.</li>
             </ul>
           </div>
 
           <div class="en">
-            <p><strong>Project Overview:</strong> Preparation of UKL-UPL documentation for 15+ residential estate developments including internal road networks, drainage systems, retention ponds, and green open spaces.</p>
-            <p><strong>Contributions:</strong></p>
+            <h4 class="sub-lbl">Project Overview</h4>
+            <p>Preparation of statutory <strong>UKL-UPL (EMP) documentation for 15+ residential estate development projects</strong> and supporting infrastructure, including internal road networks, drainage systems, retention ponds, and green open spaces. Baseline site conditions and site topography were augmented with <strong>high-resolution UAV aerial mapping</strong> to provide fine-scale spatial datasets informing spatial planning, earthwork grading, and stormwater engineering.</p>
+
+            <h4 class="sub-lbl">Contributions & Workflow</h4>
+            <p><strong>1. UAV Acquisition & Photogrammetry</strong></p>
             <ul class="custom-list">
-              <li><strong>Spatial Analysis:</strong> Spatial analysis of project locations against administrative boundaries, surrounding land cover, spatial planning (RTRW), topography, and land suitability to evaluate spatial conformity and site feasibility, producing statutory environmental management and monitoring maps.</li>
-              <li><strong>Hydrological Analysis:</strong> Calculated pre- and post-development runoff discharge using the Rational Method, performed design rainfall frequency analysis, and dimensioned stormwater conservation facilities (retention ponds, infiltration wells, and drainage networks).</li>
+              <li>Executed aerial drone photo surveys using <strong>Autel EVO II Pro</strong> over residential site parcels to capture high-resolution spatial datasets.</li>
+              <li>Processed aerial imagery end-to-end in <strong>Agisoft Metashape</strong> (photo alignment, dense point cloud generation, ground point classification) to generate high-accuracy <strong>Digital Terrain Models (DTM) and orthomosaics</strong>.</li>
+              <li>Performed rigorous quality control on ground point filtering to ensure true bare-earth terrain representation for engineering analysis.</li>
+            </ul>
+
+            <p><strong>2. Spatial & Topographic Analytics</strong></p>
+            <ul class="custom-list">
+              <li>Evaluated site boundaries against <strong>administrative limits, land cover, municipal zoning (RTRW), and land suitability</strong> using GIS and UAV mapping outputs.</li>
+              <li>Utilized <strong>UAV-derived DTMs</strong> for fine-scale topographic modeling, contour generation, slope gradient evaluation, and earthwork <em>cut-and-fill</em> calculations.</li>
+              <li>Integrated spatial findings into statutory environmental baseline, management, and monitoring maps compliant with KLHK standards.</li>
+            </ul>
+
+            <p><strong>3. Hydrological & Drainage Engineering</strong></p>
+            <ul class="custom-list">
+              <li>Applied high-resolution elevation and slope datasets from UAV DTMs to calculate <strong>pre- and post-development peak runoff discharge</strong> using the Rational Method.</li>
+              <li>Conducted rainfall design frequency analysis and topography processing to size <strong>drainage networks, retention ponds, and infiltration wells</strong>.</li>
+              <li>Modeled surface flow direction and local gradients to design integrated stormwater management and sustainable water conservation systems across project footprints.</li>
             </ul>
           </div>
         </div>
