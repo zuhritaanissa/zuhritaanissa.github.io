@@ -1689,33 +1689,43 @@ footer {
         </div>
 
         <div class="id">
-          <p>Proyek ini mengembangkan WebGIS interaktif untuk mengevaluasi kesesuaian lahan sawah irigasi di Kabupaten Sleman. Tujuan utamanya adalah mengintegrasikan berbagai karakteristik lingkungan yang memengaruhi kesesuaian lahan ke dalam satu analisis spasial, sehingga hasil akhirnya berupa peta zonasi yang menunjukkan tingkat kesesuaian setiap lokasi.</p>
+          <p>Proyek ini mengembangkan WebGIS interaktif untuk mengevaluasi kesesuaian lahan sawah irigasi di Kabupaten Sleman melalui integrasi berbagai parameter biofisik dalam satu analisis spasial. Hasil analisis disajikan dalam bentuk peta zonasi kesesuaian lahan yang dapat dieksplorasi secara interaktif.</p>
 
-          <h4 class="sub-lbl">Pertanyaan yang Dikaji</h4>
-          <p>Di mana lokasi yang memiliki kondisi lingkungan paling sesuai untuk pengembangan sawah irigasi? Mengintegrasikan parameter biofisik: Land Surface Temperature (LST Landsat-8), Soil pH, Soil Depth (SoilGrids BDTICM), Kelerengan (SRTM 30m), dan Tekstur Tanah.</p>
+          <h4 class="sub-lbl">Parameter Analisis</h4>
+          <p>Analisis mengintegrasikan lima parameter yang memengaruhi kesesuaian lahan, yaitu:</p>
+          <ul class="custom-list">
+            <li>Land Surface Temperature (LST) — Landsat-8</li>
+            <li>pH tanah</li>
+            <li>Kedalaman tanah — SoilGrids BDTICM</li>
+            <li>Kelerengan — SRTM 30 m</li>
+            <li>Tekstur tanah</li>
+          </ul>
 
-          <h4 class="sub-lbl">Workflow & Evaluasi</h4>
+          <h4 class="sub-lbl">Alur Pengolahan</h4>
           <div class="logic-flow-horizontal">
-            <span>Environmental Datasets</span><b>→</b><span>Data Harmonization</span><b>→</b><span>Reclassification</span><b>→</b><span>Spatial Overlay</span><b>→</b><span>Suitability Evaluation</span><b>→</b><span>S1 · S2 · S3 · N</span><b>→</b><span>Interactive WebGIS</span>
+            <span>Data Biofisik</span><b>→</b><span>Harmonisasi Data</span><b>→</b><span>Reklasifikasi</span><b>→</b><span>Spatial Overlay</span><b>→</b><span>Evaluasi Kesesuaian</span><b>→</b><span>S1 · S2 · S3 · N</span><b>→</b><span>WebGIS Interaktif</span>
           </div>
-          <p>Klasifikasi kesesuaian menggunakan pendekatan <em>Liebig's Law of the Minimum</em>, sehingga parameter yang paling membatasi menjadi faktor penentu kelas kesesuaian akhir (S1 Sangat Sesuai, S2 Cukup Sesuai, S3 Sesuai Marjinal, N Tidak Sesuai).</p>
+          <p>Setiap parameter direklasifikasi berdasarkan tingkat kesesuaiannya, kemudian diintegrasikan melalui <em>spatial overlay</em>. Penentuan kelas akhir menggunakan pendekatan <em>Liebig's Law of the Minimum</em>, sehingga parameter dengan faktor pembatas paling besar menentukan kelas kesesuaian akhir: S1 (Sangat Sesuai), S2 (Cukup Sesuai), S3 (Sesuai Marginal), dan N (Tidak Sesuai).</p>
         </div>
 
         <div class="en">
-          <p>Developed an interactive decision-support WebGIS platform assessing irrigated paddy field suitability in Sleman Regency by fusing multivariable environmental datasets into an intuitive cloud web map.</p>
+          <p>This project develops an interactive WebGIS to evaluate irrigated paddy field suitability in Sleman Regency through the spatial integration of multiple bio-physical parameters. Analysis results are delivered as an interactive zoning map exploring site suitability across the region.</p>
 
-          <h4 class="sub-lbl">Integrated Bio-Physical Parameters</h4>
+          <h4 class="sub-lbl">Analysis Parameters</h4>
+          <p>The analysis integrates five bio-physical parameters governing land suitability:</p>
           <ul class="custom-list">
-            <li><strong>Thermal Environment:</strong> Landsat-8 Land Surface Temperature (LST).</li>
-            <li><strong>Edaphic Properties:</strong> SoilGrids global soil datasets (Depth to Bedrock / BDTICM, soil pH, and soil texture).</li>
-            <li><strong>Topography:</strong> Slope gradient derived from SRTM 30m DEM.</li>
+            <li>Land Surface Temperature (LST) — Landsat-8</li>
+            <li>Soil pH</li>
+            <li>Soil Depth — SoilGrids BDTICM</li>
+            <li>Slope Gradient — SRTM 30 m</li>
+            <li>Soil Texture</li>
           </ul>
 
-          <h4 class="sub-lbl">Multi-Criteria Evaluation (MCE)</h4>
+          <h4 class="sub-lbl">Processing Workflow</h4>
           <div class="logic-flow-horizontal en">
-            <span>Bio-Physical Inputs</span><b>→</b><span>Raster Harmonization</span><b>→</b><span>Reclassification</span><b>→</b><span>Limiting Factor Overlay</span><b>→</b><span>FAO Suitability (S1, S2, S3, N)</span><b>→</b><span>WebGIS Deployment</span>
+            <span>Bio-Physical Datasets</span><b>→</b><span>Data Harmonization</span><b>→</b><span>Reclassification</span><b>→</b><span>Spatial Overlay</span><b>→</b><span>Suitability Evaluation</span><b>→</b><span>S1 · S2 · S3 · N</span><b>→</b><span>Interactive WebGIS</span>
           </div>
-          <p>Implemented <em>Liebig\'s Law of the Minimum</em> where the most restrictive ecological parameter determines the final suitability rating.</p>
+          <p>Each parameter is reclassified according to suitability thresholds and fused via spatial overlay. The final zoning applies <em>Liebig's Law of the Minimum</em>, where the most restrictive ecological parameter determines the ultimate suitability rating: S1 (Highly Suitable), S2 (Moderately Suitable), S3 (Marginally Suitable), and N (Not Suitable).</p>
         </div>
       </div>
     </div>
